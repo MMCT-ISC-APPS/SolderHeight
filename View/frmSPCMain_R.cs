@@ -1464,23 +1464,33 @@ namespace SolidHeight.View
                     string dataReceived = this.serialPort1.ReadExisting(); 
                     if (dataReceived != "")
                     {
-                        int indexZ = dataReceived.IndexOf('Z');
-                        if (indexZ!=-1)
-                        {
-                            int Zinit = indexZ + 1;
-                            int Zfsh = 15;
+                        //int indexZ = dataReceived.IndexOf('Z');
+                        //if (indexZ!=-1)
+                        //{
+                        //    int Zinit = indexZ + 1;
+                        //    int Zfsh = 15;
 
-                            if (dataReceived.Length > indexZ )
-                            {
-                                string dataReceived1 = dataReceived.Substring(Zinit, Zfsh);
-                                gentxtInput("Z");
-                                gentxtInput(dataReceived1);
-                            }
-                            else
-                            {
-                                MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "TEST result", MessageBoxButtons.OK);
-                            }
+                        //    if (dataReceived.Length > indexZ )
+                        //    {
+                        //        string dataReceived1 = dataReceived.Substring(Zinit, Zfsh);
+                        //        gentxtInput("Z");
+                        //        gentxtInput(dataReceived1);
+                        //    }
+                        //    else
+                        //    {
+                        //        MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "TEST result", MessageBoxButtons.OK);
+                        //    }
+                        //}
+
+                        char[] arrDataReceived = dataReceived.ToCharArray();
+
+                        foreach (var i in arrDataReceived)
+                        {
+                            gentxtInput(i.ToString());
                         }
+
+
+
                     }
                 } 
             }

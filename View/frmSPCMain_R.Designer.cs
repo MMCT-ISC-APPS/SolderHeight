@@ -123,8 +123,6 @@ namespace SolidHeight.View
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.label28 = new System.Windows.Forms.Label();
             this.gvSPC = new System.Windows.Forms.DataGridView();
-            this.myPropertyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clsCalBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
@@ -156,6 +154,8 @@ namespace SolidHeight.View
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.clsCalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.myPropertyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblMachine.SuspendLayout();
             this.tblMachineType.SuspendLayout();
@@ -1597,26 +1597,6 @@ namespace SolidHeight.View
             this.gvSPC.Size = new System.Drawing.Size(209, 160);
             this.gvSPC.TabIndex = 5;
             // 
-            // myPropertyDataGridViewTextBoxColumn
-            // 
-            this.myPropertyDataGridViewTextBoxColumn.DataPropertyName = "MyProperty";
-            this.myPropertyDataGridViewTextBoxColumn.HeaderText = "SPC";
-            this.myPropertyDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.myPropertyDataGridViewTextBoxColumn.Name = "myPropertyDataGridViewTextBoxColumn";
-            this.myPropertyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.myPropertyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.myPropertyDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // resultDataGridViewTextBoxColumn
-            // 
-            this.resultDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Values";
-            this.resultDataGridViewTextBoxColumn.HeaderText = "Values";
-            this.resultDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
-            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
-            this.resultDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // clsCalBindingSource1
             // 
             this.clsCalBindingSource1.DataSource = typeof(SolidHeight.Models.clsCal);
@@ -2034,6 +2014,26 @@ namespace SolidHeight.View
             // 
             this.clsCalBindingSource.DataSource = typeof(SolidHeight.Models.clsCal);
             // 
+            // myPropertyDataGridViewTextBoxColumn
+            // 
+            this.myPropertyDataGridViewTextBoxColumn.DataPropertyName = "MyProperty";
+            this.myPropertyDataGridViewTextBoxColumn.HeaderText = "SPC";
+            this.myPropertyDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.myPropertyDataGridViewTextBoxColumn.Name = "myPropertyDataGridViewTextBoxColumn";
+            this.myPropertyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.myPropertyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.myPropertyDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // resultDataGridViewTextBoxColumn
+            // 
+            this.resultDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
+            this.resultDataGridViewTextBoxColumn.HeaderText = "Values";
+            this.resultDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
+            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
+            this.resultDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // frmSPCMain_R
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2241,9 +2241,9 @@ namespace SolidHeight.View
         private System.Windows.Forms.DataGridViewTextBoxColumn seqNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn strHeightDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn heightDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn myPropertyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource clsCalBindingSource1;
         private System.Windows.Forms.Label lblPort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn myPropertyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
     }
 }

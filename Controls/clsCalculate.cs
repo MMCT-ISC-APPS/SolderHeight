@@ -9,12 +9,12 @@ namespace SolidHeight.Controls
     class clsCalculate
     {
         List<clsCal> lsCalR = new List<clsCal>();
-        public Double CalSD(ref List<clsHieght> HeightList, Double myHeight, int SeqNo, string strPadperCal,string strCPKUpper, string strCPKLower)
+        public Double CalSD(ref List<clsHieght> HeightList, Double myHeight, int SeqNo, string strPadperCal, string strCPKUpper, string strCPKLower)
         {
-            Double SDBar = 0, Xbar = 0, sumZ = 0, sumZ2 = 0, Z, RAll ,CPU,CPL,CPK,CPKUpper,CPKLower;
+            Double SDBar = 0, Xbar = 0, sumZ = 0, sumZ2 = 0, Z, RAll, CPU, CPL, CPK, CPKUpper, CPKLower;
             Double dbMax, dbMin;
             Double Total = 0.000000;
-           
+
             foreach (clsHieght i in HeightList)
             {
                 List<clsCal> lsResult = new List<clsCal>();
@@ -24,7 +24,7 @@ namespace SolidHeight.Controls
                     sumZ += i.Height;
                 }
 
-                if(i.Results != null)
+                if (i.Results != null)
                 {
                     continue;
                 }
@@ -52,13 +52,14 @@ namespace SolidHeight.Controls
 
                 CPK = Math.Min(CPU, CPL);
 
-                if(Double.IsNaN(SDBar)) {
-                    SDBar = 0; 
+                if (Double.IsNaN(SDBar))
+                {
+                    SDBar = 0;
                     CPK = 0;
                     // var g = ((decimal)(SDBar)).ToString();  //M
                 }
 
-                lsCalR.AddRange( CalR(ref HeightList, myHeight, SeqNo, strPadperCal));
+                lsCalR.AddRange(CalR(ref HeightList, myHeight, SeqNo, strPadperCal));
                 lsResult.AddRange(new List<clsCal>
                 {
                      new clsCal
@@ -71,8 +72,8 @@ namespace SolidHeight.Controls
                      {
                         MyProperty = "R",
                          Values = ((decimal)(RAll)).ToString(),
-                        Result = RAll//Math.Round(RAll,6)
-                    },  
+                        Result = Math.Round(RAll,6)
+                    },
                 });
                 lsResult.AddRange(lsCalR);
 
@@ -89,9 +90,9 @@ namespace SolidHeight.Controls
                     {
                         MyProperty = "CPK",
                          Values = ((decimal)(CPK)).ToString(),
-                        Result = CPK //Math.Round(CPK,6)
+                        Result = Math.Round(CPK,6)
                     },
-                }) ;
+                });
 
 
                 HeightList.Where(w => w.SeqNo == SeqNo).Select(c => { c.Results = lsResult; return c; }).ToList();
