@@ -145,17 +145,15 @@ namespace SolidHeight.View
                 strSaveDataState = string.Empty;
                 gvHeight.ReadOnly = true;
                 gvSPC.ReadOnly = true;
-                btnStart.Text = "START";
-
-
-                strStatus = "READY";
+                btnStart.Text = "START";                
+                strStatus = "READY";    
                 mivStatus = new MethodInvoker(this.UpdateUI);
                 this.BeginInvoke(mivStatus);
 
                 myHeight = "";
                 Led_num = 6;
                 led_count = 1;
-                // setDelay(false);
+                setDelay(false);
             }
             catch (Exception)
             {
@@ -1171,8 +1169,11 @@ namespace SolidHeight.View
                     Led_num = 6;
                     led_count = 1;
 
+                    
+                  
+                        strStatus = "READY";
 
-                    strStatus = "READY";
+                   
                     mivStatus = new MethodInvoker(this.UpdateUI);
                     this.BeginInvoke(mivStatus);
                     ObjCal = new clsCalculate();
@@ -1425,7 +1426,11 @@ namespace SolidHeight.View
                 }
                 if (serialPort1.IsOpen)
                 {
-                    UpdateMSG("COMM Port : " + strCommPort + " เปิดใช้งานแล้ว [-OK-]", 3);
+                    UpdateMSG("COMM Port : " + strCommPort + " เปิดใช้งานแล้ว [-OK-]", 0);
+
+                    strStatus = "READY";
+                   
+
                     txtInput.Enabled = true;
                     txtInput.Focus();
                 }
@@ -1549,13 +1554,13 @@ namespace SolidHeight.View
                                 ReadZ = false;
                                 break;
                             case 1:
-                                UpdateMSG("", 0);
+                               // UpdateMSG("", 0);
                                 break;
                             case 2:
                                 if (ZtoDB())
                                 {
                                     strSaveDataState = "Complete";
-                                    strStatus = "Complete";
+                                    strStatus = "SUCCESS";
                                     setCommClosing();
                                     mivStatus = new MethodInvoker(this.UpdateUI);
                                     this.Invoke(mivStatus);
@@ -1590,23 +1595,12 @@ namespace SolidHeight.View
 
 
                 for (int i = 0; i < Led_num; i++)
-                {
-
-
-
+                { 
                     if (strMCType == "microscope")
-                    {
-                        //lblStatus.Text = "WAITING";
-
+                    { 
                         lblStatus.BackColor = Color.Yellow;
                         lblStatus.ForeColor = Color.Black;
-
-
                     }
-
-
-
-
                 }
                 this.ProcTimer.Enabled = true;
                 strStatus = "WAITING";
@@ -1620,23 +1614,19 @@ namespace SolidHeight.View
             {
                 for (int i = 0; i < Led_num; i++)
                 {
-                    //lblStatus.Text = "READY";
-                    //lblStatus.BackColor = Color.Green;
-                    //lblStatus.ForeColor = Color.White;
-
-                    //if (strMCType == "microscope")
-                    //{
-                    //    lblStatus.Text = "READY";
-                    //    lblStatus.BackColor = Color.Green;
-                    //    lblStatus.ForeColor = Color.White;
-                    //}
-                    //else
-                    //{
-                    strStatus = "READY";
-                    mivStatus = new MethodInvoker(this.UpdateUI);
-                    this.BeginInvoke(mivStatus);
-                    //}
+                    if (strMCType == "microscope")
+                    {
+                        
+                    }
                 }
+
+
+              
+                    //strStatus = "READY";
+                    //mivStatus = new MethodInvoker(this.UpdateUI);
+                    //this.BeginInvoke(mivStatus);
+                
+
                 ProcTimer.Enabled = false;
                 Cursor.Current = Cursors.Default;
 
@@ -1649,10 +1639,10 @@ namespace SolidHeight.View
         {
             try
             {
-                //if(strMCType == "microscope")
-                //{
-                setDelay(true);
-                // }
+                if (strMCType == "microscope")
+                {
+                    setDelay(true);
+                }
 
 
 
@@ -2072,7 +2062,7 @@ namespace SolidHeight.View
                             bgWorker.CancelAsync();
 
 
-                            strStatus = "Complete";
+                            strStatus = "SUCCESS";
 
                             mivStatus = new MethodInvoker(this.UpdateUI);
                             this.BeginInvoke(mivStatus);
@@ -2260,7 +2250,9 @@ namespace SolidHeight.View
                     break;
 
                 default:
-                    strStatus = "READY";
+                        strStatus = "READY";
+                    
+                    
                     colors = Color.Blue;
                     icon = MessageBoxIcon.Information;
                     break;
@@ -2298,7 +2290,8 @@ namespace SolidHeight.View
 
             Color colr = Color.White;
             this.lblStatus.Text = strStatus;
-
+        
+            
             if (strStatus.IndexOf("READY") >= 0)
             {
                 this.lblStatus.BackColor = Color.Green;
@@ -2308,17 +2301,14 @@ namespace SolidHeight.View
                 this.lblMsg.Visible = false;
             }
             else if (strStatus.IndexOf("SUCCESS") >= 0)
-            {
-                //colr = Color.Red;
+            { 
                 this.lblStatus.ForeColor = Color.White;
                 this.lblStatus.BackColor = Color.Blue;
                 this.lblMsg_E.Text = strStatus;
                 this.lblMsg_E.ForeColor = setMSG.Colors;
                 this.lblMsg.Text = setMSG.strStatus.ToString();
                 this.lblMsg.Visible = true;
-                this.WindowState = FormWindowState.Normal;
-
-
+                this.WindowState = FormWindowState.Normal; 
             }
             else if (strStatus.IndexOf("WAITING") >= 0)
             {
@@ -2409,6 +2399,8 @@ namespace SolidHeight.View
 
                 this.lblMsg_E.Text = strStatus;
                 this.lblMsg_E.ForeColor = Color.Green;
+                this.lblStatus.BackColor = Color.Lime;
+                this.lblStatus.ForeColor = Color.Black;
                 this.lblMsg.Text = setMSG.strStatus.ToString();
                 this.lblMsg.Visible = false;
 
@@ -2423,8 +2415,9 @@ namespace SolidHeight.View
 
             if (strSaveDataState == "Complete")
             {
-                // Thread.Sleep(500);
+                 Thread.Sleep(600);
                 ClearControl("");
+                 
 
             }
 

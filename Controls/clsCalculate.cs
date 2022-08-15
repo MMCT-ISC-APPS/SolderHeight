@@ -13,13 +13,6 @@ namespace SolidHeight.Controls
         {
             try
             {
-
-
-
-
-
-
-
                 Double SDBar = 0, Xbar = 0, sumZ = 0, sumZ2 = 0, Z, RAll, CPU, CPL, CPK, CPKUpper, CPKLower;
                 Double dbMax, dbMin;
                 Double Total = 0.000000;
@@ -68,8 +61,7 @@ namespace SolidHeight.Controls
                     }
 
                     lsCalR.AddRange(CalR(ref HeightList, myHeight, SeqNo, strPadperCal));
-                    lsResult.AddRange(new List<clsCal>
-                {
+                    lsResult.AddRange(new List<clsCal>{
                      new clsCal
                      {
                          MyProperty = "X",
@@ -86,9 +78,8 @@ namespace SolidHeight.Controls
                     lsResult.AddRange(lsCalR);
 
                     lsResult.AddRange(new List<clsCal>
-                {
-
-                    new clsCal
+                    {
+                        new clsCal
                     {
                         MyProperty = "SD",
                         Values = Math.Round(SDBar,6).ToString("0.000000"), //((decimal)(SDBar)).ToString(),
@@ -100,18 +91,13 @@ namespace SolidHeight.Controls
                         Values = Math.Round(CPK,6).ToString("0.000000"), //((decimal)(CPK)).ToString(),
                         Result = Math.Round(CPK,6)
                     },
-                }); ;
-
-
+                    });
                     HeightList.Where(w => w.SeqNo == SeqNo).Select(c => { c.Results = lsResult; return c; }).ToList();
                 }
-
                 return SDBar;
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 throw;
             }
         }
