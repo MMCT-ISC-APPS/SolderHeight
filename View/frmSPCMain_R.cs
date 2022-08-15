@@ -41,9 +41,9 @@ namespace SolidHeight.View
             , strSPCType, strLotType
             , myHeight
             , strShift, strSubModel, strCauses, strAction;
-         
+
         private Double dcmyHeight;
-       // SerialPort rs; 
+        // SerialPort rs; 
         List<clsSerial> SerialList;
         List<clsHieght> HeightList = new List<clsHieght>();
         String[] iparam;
@@ -106,7 +106,7 @@ namespace SolidHeight.View
             {
                 this.Text = "SPC Measure Version : " + Application.ProductVersion;
                 init();
-               
+
             }
             catch (Exception ex)
             {
@@ -147,7 +147,7 @@ namespace SolidHeight.View
                 gvSPC.ReadOnly = true;
                 btnStart.Text = "START";
 
-                
+
                 strStatus = "READY";
                 mivStatus = new MethodInvoker(this.UpdateUI);
                 this.BeginInvoke(mivStatus);
@@ -155,7 +155,7 @@ namespace SolidHeight.View
                 myHeight = "";
                 Led_num = 6;
                 led_count = 1;
-               // setDelay(false);
+                // setDelay(false);
             }
             catch (Exception)
             {
@@ -238,11 +238,9 @@ namespace SolidHeight.View
                             ClearControl("Serial");
                             txtSerialNo.Focus();
                         };
-
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 UpdateMSG(ex.Message.ToString(), 2);
@@ -277,10 +275,8 @@ namespace SolidHeight.View
         {
             try
             {
-                if (this.rdbMacroScope.Checked == true) {
-
-
-
+                if (this.rdbMacroScope.Checked == true)
+                {
                     if (setMachine(this.rdbMacroScope.Text))
                     {
                         if (txtSerialNo.Text != string.Empty)
@@ -290,9 +286,9 @@ namespace SolidHeight.View
                         }
                         UpdateMSG("", 0);
                     };
-                
+
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -302,8 +298,9 @@ namespace SolidHeight.View
         private void rdbVHX_CheckedChanged(object sender, EventArgs e)
         {
             try
-            { 
-                if (this.rdbVHX.Checked == true) {
+            {
+                if (this.rdbVHX.Checked == true)
+                {
 
                     if (setMachine(this.rdbVHX.Text))
                     {
@@ -313,10 +310,10 @@ namespace SolidHeight.View
                         }
 
                         UpdateMSG("", 0);
-                    }               
-                
+                    }
+
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -331,7 +328,7 @@ namespace SolidHeight.View
                 if (this.rdbPrime.Checked)
                 {
                     tblReconfirm.Enabled = false;
-                    if (cmbCauses.Text !="" || cmbActions.Text!="")
+                    if (cmbCauses.Text != "" || cmbActions.Text != "")
                     {
                         cmbCauses.Text = "";
                         cmbActions.Text = "";
@@ -370,8 +367,6 @@ namespace SolidHeight.View
         {
             try
             {
-
-
                 if (this.rdbSH.Checked)
                 {
                     strSPCType = "SH";
@@ -459,19 +454,20 @@ namespace SolidHeight.View
             {
                 if (btnStart.Text == "START")
                 {
-                    if(rdbReConfirm.Checked ==true)
-                    {
-                        DialogResult dr = MessageBox.Show("คุณต้องการทำ Lot Re-Confirm หรือไม่.", "WARNNING", MessageBoxButtons.YesNo,MessageBoxIcon.Information);
-
-                        if (dr == DialogResult.No ||dr == DialogResult.Cancel)
-                        {
-                            return;
-                        }
-
-                    }
+                    // Validation
                     if (!ValidationControls())
                     {
                         return;
+                    }
+                    // Check Re-Confirm
+                    if (rdbReConfirm.Checked == true)
+                    {
+                        DialogResult dr = MessageBox.Show("คุณต้องการทำ Lot Re-Confirm หรือไม่.", "WARNNING", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                        if (dr == DialogResult.No || dr == DialogResult.Cancel)
+                        {
+                            return;
+                        }
                     }
                     btnStart.Text = "Reset".ToUpper();
                     int strTotalPCCA = Convert.ToInt32(txtTotalPCCA.Text);
@@ -515,6 +511,7 @@ namespace SolidHeight.View
                             if (!setCommPort())
                             {
                                 LockHeaderControl(true);
+                                txtInput.Text = "";
                                 btnStart.Text = "START";
                             };
 
@@ -565,10 +562,10 @@ namespace SolidHeight.View
                 UpdateMSG(ex.Message.ToString(), 2);
             }
         }
-   
-       
 
-       
+
+
+
         #endregion
 
         #region functions
@@ -601,7 +598,7 @@ namespace SolidHeight.View
                     bgWorker.DoWork += new DoWorkEventHandler(bgWorker_DoWork);
                     bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
                     bgWorker.ProgressChanged += new ProgressChangedEventHandler(bgWorker_ProgressChanged);
-                    
+
                 }
                 else if (strMachine.ToLower() == "microscope")
                 {
@@ -619,12 +616,12 @@ namespace SolidHeight.View
                     }
 
 
-                   // rs = new SerialPort();
-                  
+                    // rs = new SerialPort();
+
 
                     List<string> portNames = SerialPort.GetPortNames().ToList();
                     if (portNames.Count != 0)
-                    {                        
+                    {
                         strCommPort = dataRows[0]["Commport"].ToString();
                         strCommPort = "COM" + strCommPort;
                         string gr = portNames.Where(w => w.Contains(strCommPort)).FirstOrDefault();
@@ -636,7 +633,7 @@ namespace SolidHeight.View
                         char[] spearator = { ',', ' ' };
                         string[] aSettings = strSettings.Split(spearator, 4, StringSplitOptions.None);
 
-                       // serialPort1.gr.ToString();
+                        // serialPort1.gr.ToString();
                         using (serialPort1)
                         {
                             serialPort1.PortName = gr.ToString();
@@ -661,7 +658,7 @@ namespace SolidHeight.View
                         return false;
                     }
 
-                   
+
                 }
                 return true;
             }
@@ -692,7 +689,7 @@ namespace SolidHeight.View
                     }
                     else
                     {
-                        UpdateMSG("ไม่พบ SerialNo นี้ในฐานข้อมูล. กรุณาตรวจสอบแล้วลองใหม่อีกครั้ง.", 1);                        
+                        UpdateMSG("ไม่พบ SerialNo นี้ในฐานข้อมูล. กรุณาตรวจสอบแล้วลองใหม่อีกครั้ง.", 1);
                     }
                 }
 
@@ -723,11 +720,11 @@ namespace SolidHeight.View
                         DataRow[] dataRows = dtMachine.Select();
                         if (dataRows[0]["MachineType"].ToString().ToLower() == "vhx")
                         {
-                            rdbVHX.Checked = true; 
+                            rdbVHX.Checked = true;
                         }
                         else if (dataRows[0]["MachineType"].ToString().ToLower() == "microscope")
                         {
-                            rdbMacroScope.Checked = true; 
+                            rdbMacroScope.Checked = true;
                         }
                     }
                     else
@@ -736,7 +733,7 @@ namespace SolidHeight.View
 
                         blResult = false;
                     }
-                   
+
                     blResult = true;
                 }
             }
@@ -955,7 +952,7 @@ namespace SolidHeight.View
                             {
                                 case "TextBox":
                                     TextBox txtBox = (TextBox)Con;
-                                    if (string.IsNullOrEmpty(txtBox.Text)||txtBox.Text =="0")
+                                    if (string.IsNullOrEmpty(txtBox.Text) || txtBox.Text == "0")
                                     {
                                         strMsgReturn = (txtBox.Enabled ? "กรุณากรอกข้อมูลที่กล่องข้อความ [" + rm.GetString(txtBox.Name) + "]" : "ข้อมูล  [" + rm.GetString(strSPCType) + " " + rm.GetString(txtBox.Name) + "] ไม่ได้ถูกตั้งค่า. กรุณาติดต่อ Engineer เนื่องจากช่วง Control Limit ไม่ถูกต้อง แล้วลองใหม่อีกครั้ง. ");
                                         UpdateMSG(strMsgReturn, 1);
@@ -977,37 +974,37 @@ namespace SolidHeight.View
                 }
 
                 // CAVITY PAD ROW \\
-                ListControls = new List<Control>(); 
-                ListControls = tableLayoutPanel28.Controls.Cast<Control>().ToList(); 
+                ListControls = new List<Control>();
+                ListControls = tableLayoutPanel28.Controls.Cast<Control>().ToList();
                 foreach (var Con in ListControls)
-                        {
-                            String Ctls = Con.GetType().ToString();
-                            String[] authorsList = Ctls.Split('.');
-                            String strCheckControl = authorsList[authorsList.Length - 1];
+                {
+                    String Ctls = Con.GetType().ToString();
+                    String[] authorsList = Ctls.Split('.');
+                    String strCheckControl = authorsList[authorsList.Length - 1];
 
-                            switch (strCheckControl)
+                    switch (strCheckControl)
+                    {
+                        case "TextBox":
+                            TextBox txtBox = (TextBox)Con;
+                            if (string.IsNullOrEmpty(txtBox.Text))
                             {
-                                case "TextBox":
-                                    TextBox txtBox = (TextBox)Con;
-                                    if (string.IsNullOrEmpty(txtBox.Text))
-                                    {
-                                        strMsgReturn = (txtBox.Enabled ? "กรุณากรอกข้อมูลที่กล่องข้อความ [" + rm.GetString(txtBox.Name) + "]" : "ข้อมูล  PAD SetUp ประกอบด้วย Cavity , Row ,Pad ไม่ได้ถูกตั้งค่า!!! \r\nกรุณาติดต่อ Engineer เพื่อกรอกข้อมูลให้ครบ แล้วลองใหม่อีกครั้ง. ");
-                                        UpdateMSG(strMsgReturn, 1);
-                                        txtBox.Focus();
-                                        return false;
-                                    }
-                                    break;
-                                case "ComboBox":
-                                    ComboBox txtCombo = (ComboBox)Con;
-                                    if (string.IsNullOrEmpty(txtCombo.Text))
-                                    {
-                                        UpdateMSG("กรุณาเลือก " + rm.GetString(txtCombo.Name), 1);
-                                        return false;
-                                    }
-                                    break;
+                                strMsgReturn = (txtBox.Enabled ? "กรุณากรอกข้อมูลที่กล่องข้อความ [" + rm.GetString(txtBox.Name) + "]" : "ข้อมูล  PAD SetUp ประกอบด้วย Cavity , Row ,Pad ไม่ได้ถูกตั้งค่า!!! \r\nกรุณาติดต่อ Engineer เพื่อกรอกข้อมูลให้ครบ แล้วลองใหม่อีกครั้ง. ");
+                                UpdateMSG(strMsgReturn, 1);
+                                txtBox.Focus();
+                                return false;
                             }
-                        }
-          
+                            break;
+                        case "ComboBox":
+                            ComboBox txtCombo = (ComboBox)Con;
+                            if (string.IsNullOrEmpty(txtCombo.Text))
+                            {
+                                UpdateMSG("กรุณาเลือก " + rm.GetString(txtCombo.Name), 1);
+                                return false;
+                            }
+                            break;
+                    }
+                }
+
                 return true;
             }
             catch (Exception)
@@ -1090,8 +1087,8 @@ namespace SolidHeight.View
                     txtLower.Text = string.Empty;
                     txtCenterLimit.Text = string.Empty;
                     txtUpper.Text = string.Empty;
-                    
-                    txtCPKLower.Text = string.Empty;                   
+
+                    txtCPKLower.Text = string.Empty;
                     txtCPKUpper.Text = string.Empty;
 
                     txtSDUpper.Text = string.Empty;
@@ -1134,18 +1131,14 @@ namespace SolidHeight.View
                     }
                     else
                     {
-
                         mivStatus = new MethodInvoker(this.setCommClosing);
                         this.BeginInvoke(mivStatus);
-
-
-                       
                     }
-                    if (ProcTimeVHX!= null)
+                    if (ProcTimeVHX != null)
                     {
                         ProcTimeVHX.Enabled = false;
                         ProcTimeVHX.Stop();
-                    }   
+                    }
 
                     this.Invalidate();
                     //txtEN.Text = string.Empty;
@@ -1173,7 +1166,7 @@ namespace SolidHeight.View
                     strSaveDataState = string.Empty;
                     gvHeight.ReadOnly = true;
                     gvSPC.ReadOnly = true;
-                    btnStart.Text = "START"; 
+                    btnStart.Text = "START";
                     myHeight = "";
                     Led_num = 6;
                     led_count = 1;
@@ -1182,11 +1175,7 @@ namespace SolidHeight.View
                     strStatus = "READY";
                     mivStatus = new MethodInvoker(this.UpdateUI);
                     this.BeginInvoke(mivStatus);
-
-
                     ObjCal = new clsCalculate();
-
-
                     if (txtEN.Text == "")
                     {
                         txtEN.Focus();
@@ -1195,13 +1184,12 @@ namespace SolidHeight.View
                     {
                         txtSerialNo.Focus();
                     }
-                    
+
                 }
                 UpdateMSG("", 0);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -1229,20 +1217,20 @@ namespace SolidHeight.View
 
                         ClearControl("Serial");
                         return;
-                    } 
+                    }
                     else
                     {
                         txtPadPerCol.Text = strPADPERCOL;
                         txtMeasurement.Text = dataRow["MEASUREMENT"].ToString();
                         // upper center lower
-                        txtLower.Text = (dataRow["LOWERLIMIT"].ToString() != "0" ? dataRow["LOWERLIMIT"].ToString() : "");
-                        txtCenterLimit.Text = (dataRow["CENTERLIMIT"].ToString() != "0" ? dataRow["CENTERLIMIT"].ToString() : "");
-                        txtUpper.Text = (dataRow["UPPERLIMIT"].ToString() != "0" ? dataRow["UPPERLIMIT"].ToString() : "");
+                        txtLower.Text = (dataRow["LOWERLIMIT"].ToString() != "0" ? Convert.ToDouble(dataRow["LOWERLIMIT"]).ToString("0.000000") : "");
+                        txtCenterLimit.Text = (dataRow["CENTERLIMIT"].ToString() != "0" ? Convert.ToDouble(dataRow["CENTERLIMIT"]).ToString("0.000000") : "");
+                        txtUpper.Text = (dataRow["UPPERLIMIT"].ToString() != "0" ? Convert.ToDouble(dataRow["UPPERLIMIT"]).ToString("0.000000") : "");
                         //CPK upper lower
-                        txtCPKLower.Text = (dataRow["LOWERLIMIT_CPK"].ToString() != "0" ? dataRow["LOWERLIMIT_CPK"].ToString() : "");
-                        txtCPKUpper.Text = (dataRow["UPPERLIMIT_CPK"].ToString() != "0" ? dataRow["UPPERLIMIT_CPK"].ToString() : "");
+                        txtCPKLower.Text = (dataRow["LOWERLIMIT_CPK"].ToString() != "0" ? Convert.ToDouble(dataRow["LOWERLIMIT_CPK"]).ToString("0.000000") : "");
+                        txtCPKUpper.Text = (dataRow["UPPERLIMIT_CPK"].ToString() != "0" ? Convert.ToDouble(dataRow["UPPERLIMIT_CPK"]).ToString("0.000000") : "");
                         //SD Upper
-                        txtSDUpper.Text = (dataRow["UPPERLIMIT_SD"].ToString() != "0" ? dataRow["UPPERLIMIT_SD"].ToString() : "");
+                        txtSDUpper.Text = (dataRow["UPPERLIMIT_SD"].ToString() != "0" ? Convert.ToDouble(dataRow["UPPERLIMIT_SD"]).ToString("0.000000") : "");
 
                         txtQty.Text = (dataRow["TOTAL_QTY"].ToString() != "0" ? dataRow["TOTAL_QTY"].ToString() : "");
                         txtTotalPCCA.Text = dataRow["PCCA_PER_CYCLE"].ToString();
@@ -1250,7 +1238,7 @@ namespace SolidHeight.View
                         txtRow.Text = dataRow["ROW"].ToString();
                         txtCav.Text = dataRow["CAV"].ToString();
                         txtPad.Text = dataRow["PAD"].ToString();
-                        txtDie.Text = dataRow["DIETHICKNESS"].ToString();
+                        txtDie.Text = Convert.ToDouble(dataRow["DIETHICKNESS"]).ToString("0.000000");
 
                         if (ValidationLimit_Cavity())
                         {
@@ -1293,7 +1281,7 @@ namespace SolidHeight.View
                 }
             }
 
-        } 
+        }
         private void BindingActions()
         {
             try
@@ -1411,7 +1399,7 @@ namespace SolidHeight.View
             }
         }
 
-        
+
 
 
 
@@ -1432,7 +1420,7 @@ namespace SolidHeight.View
                     }
                     else
                     {
-                        this.serialPort1.Open();                       
+                        this.serialPort1.Open();
                     }
                 }
                 if (serialPort1.IsOpen)
@@ -1461,7 +1449,7 @@ namespace SolidHeight.View
             {
                 if (this.serialPort1.IsOpen)
                 {
-                    string dataReceived = this.serialPort1.ReadExisting(); 
+                    string dataReceived = this.serialPort1.ReadExisting();
                     if (dataReceived != "")
                     {
                         //int indexZ = dataReceived.IndexOf('Z');
@@ -1481,24 +1469,21 @@ namespace SolidHeight.View
                         //        MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "TEST result", MessageBoxButtons.OK);
                         //    }
                         //}
-
+                        dataReceived=dataReceived.Replace("\\r\\n", "");
                         char[] arrDataReceived = dataReceived.ToCharArray();
-
                         foreach (var i in arrDataReceived)
                         {
                             gentxtInput(i.ToString());
                         }
-
-
-
+                        
                     }
-                } 
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(serialPort1.PortName +" : " + ex.Message, "WARNING", MessageBoxButtons.OK);                 
+                MessageBox.Show(serialPort1.PortName + " : " + ex.Message, "WARNING", MessageBoxButtons.OK);
             }
-        } 
+        }
         private void setCommClosing()
         {
             try
@@ -1506,7 +1491,7 @@ namespace SolidHeight.View
                 if (serialPort1 != null)
                 {
                     if (serialPort1.IsOpen)
-                    { 
+                    {
                         serialPort1.DiscardInBuffer();
                         serialPort1.Close();
                     }
@@ -1519,20 +1504,20 @@ namespace SolidHeight.View
                 return;
             }
         }
-       
+
         private void gentxtInput(String strInput)
         {
             try
             {
-                strStatus = "Waitting";
-                mivStatus = new MethodInvoker(this.UpdateUI);
-                this.BeginInvoke(mivStatus); 
+                //strStatus = "Waitting";
+                //mivStatus = new MethodInvoker(this.UpdateUI);
+                //this.BeginInvoke(mivStatus);
                 txtInput.BeginInvoke((MethodInvoker)(() =>
                 {
                     txtInput.Text = txtInput.Text + strInput;
                     txtInput.SelectionStart = txtInput.Text.Length;
                     txtInput.SelectionLength = 0;
-                })); 
+                }));
 
                 var G = strInput.Trim().ToLower();
                 if (strInput.Trim().ToLower() == "z" && !ProcTimer.Enabled)
@@ -1542,7 +1527,7 @@ namespace SolidHeight.View
                 if (ReadZ && myHeight.Length < 16)
                 {
                     myHeight += strInput;
-                } 
+                }
                 if (myHeight.Length == 16)
                 {
                     myHeight = myHeight.Substring(myHeight.Length - 7);
@@ -1550,7 +1535,7 @@ namespace SolidHeight.View
                     if (strSPCType == "SO")
                     {
                         dcmyHeight -= Convert.ToDouble(txtDie.Text);
-                    } 
+                    }
 
                     txtHeight.BeginInvoke((MethodInvoker)(() =>
                     {
@@ -1564,16 +1549,16 @@ namespace SolidHeight.View
                                 ReadZ = false;
                                 break;
                             case 1:
-                                UpdateMSG("", 0); 
+                                UpdateMSG("", 0);
                                 break;
                             case 2:
                                 if (ZtoDB())
-                                { 
+                                {
                                     strSaveDataState = "Complete";
                                     strStatus = "Complete";
                                     setCommClosing();
                                     mivStatus = new MethodInvoker(this.UpdateUI);
-                                    this.Invoke(mivStatus); 
+                                    this.Invoke(mivStatus);
                                 };
                                 break;
                         }
@@ -1582,6 +1567,7 @@ namespace SolidHeight.View
                         {
                             txtInput.Text = "";
                         }));
+
                         ReadZ = false;
                         ProcTimer.Enabled = false;
                         GC.Collect();
@@ -1589,7 +1575,7 @@ namespace SolidHeight.View
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 UpdateMSG(ex.Message.ToString(), 2);
             }
 
@@ -1646,14 +1632,14 @@ namespace SolidHeight.View
                     //}
                     //else
                     //{
-                        strStatus = "READY";
-                        mivStatus = new MethodInvoker(this.UpdateUI);
-                        this.BeginInvoke(mivStatus);
+                    strStatus = "READY";
+                    mivStatus = new MethodInvoker(this.UpdateUI);
+                    this.BeginInvoke(mivStatus);
                     //}
                 }
                 ProcTimer.Enabled = false;
                 Cursor.Current = Cursors.Default;
-               
+
 
 
             }
@@ -1692,7 +1678,7 @@ namespace SolidHeight.View
                 // Check Customer Spect
                 if (myHeight <= dcCustLower_limit || myHeight >= dcCustUpper_limit)
                 {
-                    UpdateMSG("ความสูงของ Solder " + myHeight.ToString() + " Out of Control Limit ของลูกค้า \r\nUpper Customer :"+ dcCustUpper_limit.ToString()+"\r\nLower Customer : "+ dcCustLower_limit.ToString()+" \r\nกรุณาตรวจสอบแล้วลองใหม่อีกครั้ง.", 1);
+                    UpdateMSG("ความสูงของ Solder " + myHeight.ToString() + " Out of Control Limit ของลูกค้า \r\nUpper Customer :" + dcCustUpper_limit.ToString() + "\r\nLower Customer : " + dcCustLower_limit.ToString() + " \r\nกรุณาตรวจสอบแล้วลองใหม่อีกครั้ง.", 1);
                     iZtoArray = 0;
                     return iZtoArray;
                 }
@@ -1700,7 +1686,7 @@ namespace SolidHeight.View
                 //Check User Spect
                 if (myHeight <= dclower_limit || myHeight >= dcUpper_limit)
                 {
-                    UpdateMSG("ความสูงของ Solder : " + myHeight.ToString() + " Out of Control Limit \r\nกรุณาวัดค่าใหม่.", 1) ;
+                    UpdateMSG("ความสูงของ Solder : " + myHeight.ToString() + " Out of Control Limit \r\nกรุณาวัดค่าใหม่.", 1);
                     iZtoArray = 0;
                     return iZtoArray;
                 }
@@ -1709,7 +1695,7 @@ namespace SolidHeight.View
                 HeightList.Add(new clsHieght
                 {
                     SeqNo = iSeqNo,
-                    strHeight = Math.Round(myHeight,6).ToString("0.000000"),
+                    strHeight = Math.Round(myHeight, 6).ToString("0.000000"),
                     Height = myHeight,
                     Results = null
                 });
@@ -1732,7 +1718,7 @@ namespace SolidHeight.View
                     strStatus = "Complete";
                     mivStatus = new MethodInvoker(this.UpdateUI);
                     this.BeginInvoke(mivStatus);
-                } 
+                }
 
                 if (Convert.ToInt32(txtQty.Text) == iSeqNo)
                 {
@@ -1752,13 +1738,13 @@ namespace SolidHeight.View
         {
             try
             {
-                
+
                 gvHeight.DataSource = null;
                 gvHeight.DataSource = HeightList.OrderByDescending(o => o.SeqNo).ToList();
                 gvHeight.Columns[2].Visible = false;
-                gvHeight.Columns["SeqNo"].Width = 60; 
+                gvHeight.Columns["SeqNo"].Width = 60;
                 this.gvHeight.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
-             
+
 
                 clsHieght SPCs = new clsHieght();
                 SPCs = HeightList.Where(w => w.SeqNo == Seqno).FirstOrDefault();
@@ -1841,7 +1827,7 @@ namespace SolidHeight.View
                 {
 
                     UpdateMSG("การวัดความสูงของSolder ประสบความสำเร็จ ", 3);
-                    setDelay(true); 
+                    setDelay(true);
                     blResult = true;
                 }
                 else
@@ -1899,7 +1885,7 @@ namespace SolidHeight.View
             BackgroundWorker worker;
             worker = sender as BackgroundWorker;
             try
-            { 
+            {
                 if (strStatusEvent != "Running")
                 {
                     if (worker.CancellationPending == true)
@@ -1964,24 +1950,24 @@ namespace SolidHeight.View
                                                 var dieTickness = Convert.ToDouble(txtDie.Text);
                                                 dcmyHeight -= dieTickness;
 
-                                            } 
+                                            }
                                             txtHeight.Invoke((MethodInvoker)(() =>
                                             {
                                                 txtHeight.Text = dcmyHeight.ToString("0.000000");
-                                            })); 
+                                            }));
                                             if (dcmyHeight != 0)
                                             {
                                                 switch (ZtoArray(dcmyHeight))
                                                 {
                                                     case 0:
 
-                                                        ReadZ = false; 
+                                                        ReadZ = false;
                                                         System.ArgumentException argEx = new System.ArgumentException("Hieght is not spec");
                                                         throw argEx;
-                                                         
+
                                                     case 1:
-                                                        
-                                                        iRunningFile++; 
+
+                                                        iRunningFile++;
                                                         File.Move(fi.FullName, strlogFinishPath + "\\" + DateTime.Now.ToString("ddMMyyyyHHmmss") + fi.Name.ToString());
                                                         strStatusEvent = "Complete";
                                                         worker.ReportProgress(iPer);
@@ -1992,7 +1978,7 @@ namespace SolidHeight.View
 
                                                     case 2:
 
-                                                         iRunningFile++; 
+                                                        iRunningFile++;
                                                         File.Move(fi.FullName, strlogFinishPath + "\\" + DateTime.Now.ToString("ddMMyyyyHHmmss") + fi.Name.ToString());
                                                         strStatusEvent = "Complete";
                                                         var iPerwww = iPer;
@@ -2023,9 +2009,9 @@ namespace SolidHeight.View
                                             bgWorker.CancelAsync();
                                             strStatusEvent = "ERROR";
                                             strStatus = "ERROR";
-                                            MessageBox.Show("error 112 :" +ex.Message.ToString());
+                                            MessageBox.Show("error 112 :" + ex.Message.ToString());
                                             mivStatus = new MethodInvoker(this.UpdateUI);
-                                            this.BeginInvoke(mivStatus); 
+                                            this.BeginInvoke(mivStatus);
                                         }
                                     }
                                 }
@@ -2060,7 +2046,7 @@ namespace SolidHeight.View
                 }
             }
         }
-        delegate void SetTextCallback(string text); 
+        delegate void SetTextCallback(string text);
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
@@ -2272,7 +2258,7 @@ namespace SolidHeight.View
                     colors = Color.Orange;
                     icon = MessageBoxIcon.Error;
                     break;
-                
+
                 default:
                     strStatus = "READY";
                     colors = Color.Blue;
@@ -2292,7 +2278,7 @@ namespace SolidHeight.View
             if (blStatus != 0)
             {
 
-                MessageBox.Show( strMSG.ToString(), strStatus.ToUpper(), MessageBoxButtons.OK, icon);
+                MessageBox.Show(new Form { TopMost = true }, strMSG.ToString(), strStatus.ToUpper(), MessageBoxButtons.OK, icon);
                 if (blStatus == 2)
                 {
                     //tblDetail.Enabled = false;
@@ -2330,6 +2316,7 @@ namespace SolidHeight.View
                 this.lblMsg_E.ForeColor = setMSG.Colors;
                 this.lblMsg.Text = setMSG.strStatus.ToString();
                 this.lblMsg.Visible = true;
+                this.WindowState = FormWindowState.Normal;
 
 
             }
@@ -2436,7 +2423,7 @@ namespace SolidHeight.View
 
             if (strSaveDataState == "Complete")
             {
-               // Thread.Sleep(500);
+                // Thread.Sleep(500);
                 ClearControl("");
 
             }

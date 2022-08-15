@@ -123,6 +123,8 @@ namespace SolidHeight.View
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.label28 = new System.Windows.Forms.Label();
             this.gvSPC = new System.Windows.Forms.DataGridView();
+            this.myPropertyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clsCalBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel30 = new System.Windows.Forms.TableLayoutPanel();
@@ -154,8 +156,6 @@ namespace SolidHeight.View
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.clsCalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.myPropertyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tblMachine.SuspendLayout();
             this.tblMachineType.SuspendLayout();
@@ -1597,6 +1597,26 @@ namespace SolidHeight.View
             this.gvSPC.Size = new System.Drawing.Size(209, 160);
             this.gvSPC.TabIndex = 5;
             // 
+            // myPropertyDataGridViewTextBoxColumn
+            // 
+            this.myPropertyDataGridViewTextBoxColumn.DataPropertyName = "MyProperty";
+            this.myPropertyDataGridViewTextBoxColumn.HeaderText = "SPC";
+            this.myPropertyDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.myPropertyDataGridViewTextBoxColumn.Name = "myPropertyDataGridViewTextBoxColumn";
+            this.myPropertyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.myPropertyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.myPropertyDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // resultDataGridViewTextBoxColumn
+            // 
+            this.resultDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Values";
+            this.resultDataGridViewTextBoxColumn.HeaderText = "Values";
+            this.resultDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
+            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
+            this.resultDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // clsCalBindingSource1
             // 
             this.clsCalBindingSource1.DataSource = typeof(SolidHeight.Models.clsCal);
@@ -1673,8 +1693,8 @@ namespace SolidHeight.View
             this.tableLayoutPanel26.Location = new System.Drawing.Point(6, 6);
             this.tableLayoutPanel26.Name = "tableLayoutPanel26";
             this.tableLayoutPanel26.RowCount = 3;
-            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.43423F));
-            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.52666F));
+            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.1236F));
+            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.49438F));
             this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.0391F));
             this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel26.Size = new System.Drawing.Size(213, 357);
@@ -1689,7 +1709,7 @@ namespace SolidHeight.View
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(205, 69);
+            this.groupBox1.Size = new System.Drawing.Size(205, 86);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input MicroScope";
@@ -1704,7 +1724,7 @@ namespace SolidHeight.View
             this.txtInput.Location = new System.Drawing.Point(3, 21);
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(201, 47);
+            this.txtInput.Size = new System.Drawing.Size(201, 64);
             this.txtInput.TabIndex = 0;
             this.txtInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1715,9 +1735,9 @@ namespace SolidHeight.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tableLayoutPanel27);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.groupBox2.Location = new System.Drawing.Point(4, 80);
+            this.groupBox2.Location = new System.Drawing.Point(4, 97);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(205, 115);
+            this.groupBox2.Size = new System.Drawing.Size(205, 98);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Height";
@@ -1736,7 +1756,7 @@ namespace SolidHeight.View
             this.tableLayoutPanel27.RowCount = 2;
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.71429F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.28571F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(198, 88);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(198, 71);
             this.tableLayoutPanel27.TabIndex = 0;
             // 
             // label29
@@ -1748,7 +1768,7 @@ namespace SolidHeight.View
             this.label29.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(3, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(192, 31);
+            this.label29.Size = new System.Drawing.Size(192, 25);
             this.label29.TabIndex = 0;
             this.label29.Text = "Values";
             this.label29.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1760,7 +1780,7 @@ namespace SolidHeight.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHeight.Enabled = false;
             this.txtHeight.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
-            this.txtHeight.Location = new System.Drawing.Point(3, 34);
+            this.txtHeight.Location = new System.Drawing.Point(3, 28);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.ReadOnly = true;
             this.txtHeight.Size = new System.Drawing.Size(192, 38);
@@ -2013,26 +2033,6 @@ namespace SolidHeight.View
             // clsCalBindingSource
             // 
             this.clsCalBindingSource.DataSource = typeof(SolidHeight.Models.clsCal);
-            // 
-            // myPropertyDataGridViewTextBoxColumn
-            // 
-            this.myPropertyDataGridViewTextBoxColumn.DataPropertyName = "MyProperty";
-            this.myPropertyDataGridViewTextBoxColumn.HeaderText = "SPC";
-            this.myPropertyDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.myPropertyDataGridViewTextBoxColumn.Name = "myPropertyDataGridViewTextBoxColumn";
-            this.myPropertyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.myPropertyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.myPropertyDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // resultDataGridViewTextBoxColumn
-            // 
-            this.resultDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
-            this.resultDataGridViewTextBoxColumn.HeaderText = "Values";
-            this.resultDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
-            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
-            this.resultDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // frmSPCMain_R
             // 

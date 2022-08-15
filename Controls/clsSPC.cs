@@ -275,10 +275,6 @@ namespace SolidHeight.Controls
                 throw;
             }
         }
-
-
-
-
         public DataTable ExecuteTable(string strSQL, List<SqlParameter> sqlParam)
         {
             try
@@ -295,9 +291,6 @@ namespace SolidHeight.Controls
                 {
                     sqlCmd.Parameters.Add(item);
                 }
-
-               
-                
                 dt = common.ExecuteReader(sqlCmd);
                 common.closeConnect();
                 return dt;
@@ -323,9 +316,6 @@ namespace SolidHeight.Controls
                 {
                     sqlCmd.Parameters.Add(item);
                 }
-
-
-
                 dt = common.ExecuteReader(sqlCmd);
                 common.closeConnect();
                 return dt;
