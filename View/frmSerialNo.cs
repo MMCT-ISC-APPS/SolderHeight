@@ -159,6 +159,28 @@ namespace SolidHeight.View
             }
         }
 
+        private void dgvSerialList_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (!GridValidate())
+                {
+                    btnOK.Enabled = false;
+                    // selectCell(e.RowIndex);
+                }
+                else
+                {
+                    btnOK.Enabled = true;
+                }
+                   ;                 
+            }
+            catch (Exception ex)
+            {
+
+                UpdateMSG(ex.Message.ToString(), 1);
+            }
+        }
+
         private void dgvSerialList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -285,8 +307,26 @@ namespace SolidHeight.View
                 UpdateMSG(ex.Message.ToString(), 1);
             }
         }
+
+
+
         #endregion
 
+        private void frmSerialNo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (DialogResult == DialogResult.None)
+                {
+                   e.Cancel =true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -302,7 +342,8 @@ namespace SolidHeight.View
                 }
                 else
                 {
-                    //UpdateMSG("false", 1);
+                    btnOK.Enabled = false;
+                    this.DialogResult = DialogResult.None;
                 }
             }
             catch (Exception ex)

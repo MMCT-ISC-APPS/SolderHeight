@@ -40,8 +40,8 @@ namespace SolidHeight.View
             , strMCName, strMCType
             , strSPCType, strLotType
             , myHeight
-            , strShift, strSubModel, strCauses, strAction
-            , DataZ;
+            , strShift, strSubModel, strCauses, strAction;
+         
         private Double dcmyHeight;
        // SerialPort rs; 
         List<clsSerial> SerialList;
@@ -331,6 +331,11 @@ namespace SolidHeight.View
                 if (this.rdbPrime.Checked)
                 {
                     tblReconfirm.Enabled = false;
+                    if (cmbCauses.Text !="" || cmbActions.Text!="")
+                    {
+                        cmbCauses.Text = "";
+                        cmbActions.Text = "";
+                    }
                     strLotType = "Prime";
                     UpdateMSG("", 0);
                 }
@@ -576,6 +581,7 @@ namespace SolidHeight.View
                 txtInput.Enabled = false;
                 if (strMachine.ToLower() == "vhx")
                 {
+                    lblPort.Text = string.Empty;
                     strSPCPath = dataRows[0]["SPCVHXPath"].ToString();
                     strSPCMovePath = dataRows[0]["SPCVHXMovePath"].ToString();
                     if (strSPCPath == "")
@@ -646,11 +652,12 @@ namespace SolidHeight.View
                             serialPort1.ReadTimeout = 100;
 
                         }
-                         
+                        lblPort.Text = serialPort1.PortName;
                     }
                     else
                     {
-                        UpdateMSG("ไม่พบ COMM Port ในคอมพิวเตอร์ [-FAIL-] ", 1); 
+                        UpdateMSG("ไม่พบ COMM Port ในคอมพิวเตอร์ [-FAIL-] ", 1);
+                        lblPort.Text = string.Empty;
                         return false;
                     }
 
@@ -1031,14 +1038,6 @@ namespace SolidHeight.View
                 }
                 else if (strLotType == "Prime")
                 {
-                    //if (blResults == true)
-                    //{
-                    //    blResults = false;
-                    //}
-                    //else
-                    //{
-
-                    //}
 
                     blResults = !blResults;
 
@@ -1160,6 +1159,7 @@ namespace SolidHeight.View
                     rdbSH.Checked = false;
                     rdbSO.Checked = false;
                     txtRemark.Text = string.Empty;
+                    lblPort.Text = string.Empty;
                     strSaveDataState = "";
                     strStatusEvent = "";
                     strStatus = "";
@@ -1185,7 +1185,17 @@ namespace SolidHeight.View
 
 
                     ObjCal = new clsCalculate();
-                    txtSerialNo.Focus();
+
+
+                    if (txtEN.Text == "")
+                    {
+                        txtEN.Focus();
+                    }
+                    else
+                    {
+                        txtSerialNo.Focus();
+                    }
+                    
                 }
                 UpdateMSG("", 0);
             }
@@ -1451,18 +1461,25 @@ namespace SolidHeight.View
             {
                 if (this.serialPort1.IsOpen)
                 {
-                    string dataReceived = this.serialPort1.ReadExisting();
-                    MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "WARNING Message Return", MessageBoxButtons.OK);
+                    string dataReceived = this.serialPort1.ReadExisting(); 
                     if (dataReceived != "")
                     {
                         int indexZ = dataReceived.IndexOf('Z');
-                        int Zinit = indexZ + 1;
-                        int Zfsh = 15;
-                        if (dataReceived.Length > indexZ + 16)
+                        if (indexZ!=-1)
                         {
-                            string dataReceived1 = dataReceived.Substring(Zinit, Zfsh).ToString();
-                            gentxtInput("Z");
-                            gentxtInput(dataReceived1.ToString());
+                            int Zinit = indexZ + 1;
+                            int Zfsh = 15;
+
+                            if (dataReceived.Length > indexZ )
+                            {
+                                string dataReceived1 = dataReceived.Substring(Zinit, Zfsh);
+                                gentxtInput("Z");
+                                gentxtInput(dataReceived1);
+                            }
+                            else
+                            {
+                                MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "TEST result", MessageBoxButtons.OK);
+                            }
                         }
                     }
                 } 
@@ -1479,8 +1496,7 @@ namespace SolidHeight.View
                 if (serialPort1 != null)
                 {
                     if (serialPort1.IsOpen)
-                    {
-                        //serialPort1.DataReceived -= Rsrecivedata;
+                    { 
                         serialPort1.DiscardInBuffer();
                         serialPort1.Close();
                     }
@@ -1493,23 +1509,7 @@ namespace SolidHeight.View
                 return;
             }
         }
-        //private void Rsrecivedata(object sender, SerialDataReceivedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        //DataZ = rs.ReadLine();
-
-
-
-        //        DataZ = serialPort1.ReadExisting();
-        //        gentxtInput(DataZ);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        UpdateMSG(ex.Message.ToString(), 2);
-        //    }
-        //}
-
+       
         private void gentxtInput(String strInput)
         {
             try
@@ -1532,14 +1532,7 @@ namespace SolidHeight.View
                 if (ReadZ && myHeight.Length < 16)
                 {
                     myHeight += strInput;
-                }
-                //if (strInput.Trim().ToLower() == "mm")
-                //{
-                //    strSaveDataState = "";
-                //    strStatus = "READY";
-                //    mivStatus = new MethodInvoker(this.UpdateUI);
-                //    this.BeginInvoke(mivStatus);
-                //}
+                } 
                 if (myHeight.Length == 16)
                 {
                     myHeight = myHeight.Substring(myHeight.Length - 7);
@@ -1553,8 +1546,6 @@ namespace SolidHeight.View
                     {
                         txtHeight.Text = dcmyHeight.ToString("0.000000");
                     }));
-                     
-
                     if (dcmyHeight != 0)
                     {
                         switch (ZtoArray(dcmyHeight))
@@ -1567,16 +1558,12 @@ namespace SolidHeight.View
                                 break;
                             case 2:
                                 if (ZtoDB())
-                                {
-                                    
-                                    //Thread.Sleep(100);
+                                { 
                                     strSaveDataState = "Complete";
                                     strStatus = "Complete";
                                     setCommClosing();
                                     mivStatus = new MethodInvoker(this.UpdateUI);
-                                    this.Invoke(mivStatus);
-
-                                    //ClearControl("");
+                                    this.Invoke(mivStatus); 
                                 };
                                 break;
                         }
@@ -1592,8 +1579,7 @@ namespace SolidHeight.View
                 }
             }
             catch (Exception ex)
-            {
-
+            { 
                 UpdateMSG(ex.Message.ToString(), 2);
             }
 
@@ -1736,11 +1722,7 @@ namespace SolidHeight.View
                     strStatus = "Complete";
                     mivStatus = new MethodInvoker(this.UpdateUI);
                     this.BeginInvoke(mivStatus);
-                }
-
-
-
-
+                } 
 
                 if (Convert.ToInt32(txtQty.Text) == iSeqNo)
                 {
@@ -1849,8 +1831,7 @@ namespace SolidHeight.View
                 {
 
                     UpdateMSG("การวัดความสูงของSolder ประสบความสำเร็จ ", 3);
-                    setDelay(true);
-
+                    setDelay(true); 
                     blResult = true;
                 }
                 else
@@ -1908,9 +1889,7 @@ namespace SolidHeight.View
             BackgroundWorker worker;
             worker = sender as BackgroundWorker;
             try
-            {
-
-
+            { 
                 if (strStatusEvent != "Running")
                 {
                     if (worker.CancellationPending == true)
@@ -1935,7 +1914,7 @@ namespace SolidHeight.View
                         }
                         else
                         {
-                            Double ipers = 0.00;
+                            Double ipers = 0.000000;
                             int iPer = 0;
 
                             foreach (FileInfo fi in fileSPC)
@@ -1955,11 +1934,9 @@ namespace SolidHeight.View
                                 {
                                     try
                                     {
-
-                                        Double r = Convert.ToDouble(iRunningFile.ToString("0.000")), t = Convert.ToDouble(iTotalFile.ToString("0.000"));
-                                        ipers = ((r / t) * 100);
-
-                                        iPer = Convert.ToInt32(ipers);
+                                        Double dbRunning = Convert.ToDouble(iRunningFile.ToString("0.000000")), dbTotals = Convert.ToDouble(iTotalFile.ToString("0.000000"));
+                                        ipers = (Math.Round((dbRunning / dbTotals), 6) * 100);
+                                        iPer = (int)Math.Round(ipers);
 
                                         if (iRunningFile < iTotalFile)
                                         {
@@ -1975,8 +1952,8 @@ namespace SolidHeight.View
                                             if (strSPCType == "SO")
                                             {
                                                 var dieTickness = Convert.ToDouble(txtDie.Text);
-
                                                 dcmyHeight -= dieTickness;
+
                                             } 
                                             txtHeight.Invoke((MethodInvoker)(() =>
                                             {
@@ -1987,34 +1964,43 @@ namespace SolidHeight.View
                                                 switch (ZtoArray(dcmyHeight))
                                                 {
                                                     case 0:
-                                                        ReadZ = false;
+
+                                                        ReadZ = false; 
                                                         System.ArgumentException argEx = new System.ArgumentException("Hieght is not spec");
                                                         throw argEx;
-                                                        break;
+                                                         
                                                     case 1:
-                                                        iRunningFile++;
+                                                        
+                                                        iRunningFile++; 
                                                         File.Move(fi.FullName, strlogFinishPath + "\\" + DateTime.Now.ToString("ddMMyyyyHHmmss") + fi.Name.ToString());
                                                         strStatusEvent = "Complete";
                                                         worker.ReportProgress(iPer);
                                                         strStatus = "Complete";
                                                         Thread.Sleep(300);
-
                                                         UpdateMSG("", 0);
                                                         break;
+
                                                     case 2:
-                                                        iRunningFile++;
+
+                                                         iRunningFile++; 
                                                         File.Move(fi.FullName, strlogFinishPath + "\\" + DateTime.Now.ToString("ddMMyyyyHHmmss") + fi.Name.ToString());
                                                         strStatusEvent = "Complete";
+                                                        var iPerwww = iPer;
                                                         worker.ReportProgress(100);
                                                         strStatus = "Complete";
                                                         Thread.Sleep(300);
                                                         break;
+
                                                 }
+
                                                 myHeight = "";
                                                 txtInput.Text = "";
                                                 ReadZ = false;
+
                                             }
+
                                             GC.Collect();
+
                                         }
                                     }
                                     catch (Exception ex)
@@ -2027,9 +2013,9 @@ namespace SolidHeight.View
                                             bgWorker.CancelAsync();
                                             strStatusEvent = "ERROR";
                                             strStatus = "ERROR";
+                                            MessageBox.Show("error 112 :" +ex.Message.ToString());
                                             mivStatus = new MethodInvoker(this.UpdateUI);
-                                            this.BeginInvoke(mivStatus);
-                                            //UpdateMSG(ex.Message.ToString(), 1);
+                                            this.BeginInvoke(mivStatus); 
                                         }
                                     }
                                 }
@@ -2327,9 +2313,9 @@ namespace SolidHeight.View
             }
             else if (strStatus.IndexOf("SUCCESS") >= 0)
             {
-                colr = Color.Red;
+                //colr = Color.Red;
                 this.lblStatus.ForeColor = Color.White;
-                this.lblStatus.BackColor = colr;
+                this.lblStatus.BackColor = Color.Blue;
                 this.lblMsg_E.Text = strStatus;
                 this.lblMsg_E.ForeColor = setMSG.Colors;
                 this.lblMsg.Text = setMSG.strStatus.ToString();

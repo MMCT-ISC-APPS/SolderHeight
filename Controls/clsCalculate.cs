@@ -13,7 +13,7 @@ namespace SolidHeight.Controls
         {
             Double SDBar = 0, Xbar = 0, sumZ = 0, sumZ2 = 0, Z, RAll ,CPU,CPL,CPK,CPKUpper,CPKLower;
             Double dbMax, dbMin;
-            Int32 cntList = 0, Total = 0;
+            Double Total = 0.000000;
            
             foreach (clsHieght i in HeightList)
             {
@@ -33,13 +33,16 @@ namespace SolidHeight.Controls
                 CPKUpper = Convert.ToDouble(strCPKUpper.ToString());
                 CPKLower = Convert.ToDouble(strCPKLower.ToString());
 
-                Total = HeightList.Count;
+                Total = Convert.ToDouble(HeightList.Count.ToString("0.000000"));
                 Z = ((Total * (Total - 1)) == 0 ? 1 : (Total * (Total - 1)));
 
                 dbMin = HeightList.OrderBy(o => o.Height).Select(s => s.Height).First();
                 dbMax = HeightList.OrderByDescending(o => o.Height).Select(s => s.Height).First();
 
                 Xbar = sumZ / Total;
+
+                Double SDR = ((Total * sumZ2) - (Math.Pow(sumZ, 2))) / Z;
+
                 SDBar = Z == 0 ? 0 : Math.Sqrt(((Total * sumZ2) - (Math.Pow(sumZ, 2))) / Z);
                 RAll = dbMax - dbMin;
 
@@ -49,9 +52,11 @@ namespace SolidHeight.Controls
 
                 CPK = Math.Min(CPU, CPL);
 
-
-               var g = ((decimal)(SDBar)).ToString();  //M
-
+                if(Double.IsNaN(SDBar)) {
+                    SDBar = 0; 
+                    CPK = 0;
+                    // var g = ((decimal)(SDBar)).ToString();  //M
+                }
 
                 lsCalR.AddRange( CalR(ref HeightList, myHeight, SeqNo, strPadperCal));
                 lsResult.AddRange(new List<clsCal>

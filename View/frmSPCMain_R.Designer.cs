@@ -147,14 +147,15 @@ namespace SolidHeight.View
             this.txtRow = new System.Windows.Forms.TextBox();
             this.txtPad = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.clsCalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel29 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMsg_E = new System.Windows.Forms.Label();
             this.lblMsg = new System.Windows.Forms.Label();
+            this.lblPort = new System.Windows.Forms.Label();
             this.tblAll = new System.Windows.Forms.TableLayoutPanel();
             this.ProcTimer = new System.Windows.Forms.Timer(this.components);
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.clsCalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tblMachine.SuspendLayout();
             this.tblMachineType.SuspendLayout();
@@ -192,9 +193,9 @@ namespace SolidHeight.View
             this.tableLayoutPanel27.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clsCalBindingSource)).BeginInit();
             this.tableLayoutPanel29.SuspendLayout();
             this.tblAll.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clsCalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1934,10 +1935,6 @@ namespace SolidHeight.View
             this.label30.Text = "Sequence";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // clsCalBindingSource
-            // 
-            this.clsCalBindingSource.DataSource = typeof(SolidHeight.Models.clsCal);
-            // 
             // tableLayoutPanel29
             // 
             this.tableLayoutPanel29.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1950,6 +1947,7 @@ namespace SolidHeight.View
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel29.Controls.Add(this.lblMsg_E, 0, 0);
             this.tableLayoutPanel29.Controls.Add(this.lblMsg, 1, 0);
+            this.tableLayoutPanel29.Controls.Add(this.lblPort, 2, 0);
             this.tableLayoutPanel29.Location = new System.Drawing.Point(3, 807);
             this.tableLayoutPanel29.Name = "tableLayoutPanel29";
             this.tableLayoutPanel29.RowCount = 1;
@@ -1986,6 +1984,20 @@ namespace SolidHeight.View
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMsg.Visible = false;
             // 
+            // lblPort
+            // 
+            this.lblPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPort.AutoSize = true;
+            this.lblPort.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblPort.Location = new System.Drawing.Point(571, 3);
+            this.lblPort.Name = "lblPort";
+            this.lblPort.Size = new System.Drawing.Size(94, 25);
+            this.lblPort.TabIndex = 2;
+            this.lblPort.Text = "lblPort";
+            this.lblPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tblAll
             // 
             this.tblAll.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2018,13 +2030,16 @@ namespace SolidHeight.View
             this.serialPort1.BaudRate = 19200;
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // clsCalBindingSource
+            // 
+            this.clsCalBindingSource.DataSource = typeof(SolidHeight.Models.clsCal);
+            // 
             // frmSPCMain_R
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(695, 850);
             this.Controls.Add(this.tblAll);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSPCMain_R";
@@ -2096,10 +2111,10 @@ namespace SolidHeight.View
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel28.ResumeLayout(false);
             this.tableLayoutPanel28.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clsCalBindingSource)).EndInit();
             this.tableLayoutPanel29.ResumeLayout(false);
             this.tableLayoutPanel29.PerformLayout();
             this.tblAll.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.clsCalBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -2229,5 +2244,6 @@ namespace SolidHeight.View
         private System.Windows.Forms.DataGridViewTextBoxColumn myPropertyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource clsCalBindingSource1;
+        private System.Windows.Forms.Label lblPort;
     }
 }
