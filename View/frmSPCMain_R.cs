@@ -280,7 +280,6 @@ namespace SolidHeight.View
                         if (txtSerialNo.Text != string.Empty)
                         {
                             getSerialDetail(txtSerialNo.Text);
-
                         }
                         UpdateMSG("", 0);
                     };
@@ -306,10 +305,8 @@ namespace SolidHeight.View
                         {
                             getSerialDetail(txtSerialNo.Text);
                         }
-
                         UpdateMSG("", 0);
                     }
-
                 }
 
             }
@@ -338,7 +335,6 @@ namespace SolidHeight.View
             }
             catch (Exception ex)
             {
-
                 UpdateMSG(ex.Message.ToString(), 2);
             }
         }
@@ -352,8 +348,6 @@ namespace SolidHeight.View
                     strLotType = "Re-Confirm";
                     UpdateMSG("", 0);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -1964,7 +1958,7 @@ namespace SolidHeight.View
                                                         worker.ReportProgress(iPer);
                                                         strStatus = "Complete";
                                                         Thread.Sleep(300);
-                                                        UpdateMSG("", 0);
+                                                        //UpdateMSG("", 0);
                                                         break;
 
                                                     case 2:

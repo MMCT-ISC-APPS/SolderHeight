@@ -27,7 +27,7 @@
     <ProductName>Solder Measuring of Seagate</ProductName>
     <PublisherName>ISC MMCT</PublisherName>
     <SuiteName>Solder Measuring</SuiteName>
-    <ApplicationRevision>22</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -146,12 +146,6 @@
     <Compile Include="View\frmSerialNo.Designer.cs">
       <DependentUpon>frmSerialNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\frmSPCMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\frmSPCMain.Designer.cs">
-      <DependentUpon>frmSPCMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\frmSPCMain_R.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,9 +167,6 @@
     </Compile>
     <EmbeddedResource Include="View\frmSerialNo.resx">
       <DependentUpon>frmSerialNo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\frmSPCMain.resx">
-      <DependentUpon>frmSPCMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmSPCMain_R.resx">
       <DependentUpon>frmSPCMain_R.cs</DependentUpon>
