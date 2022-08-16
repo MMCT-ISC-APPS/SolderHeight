@@ -450,11 +450,6 @@ namespace SolidHeight.View
             {
                 if (btnStart.Text == "START")
                 {
-                    // Validation
-                    if (!ValidationControls())
-                    {
-                        return;
-                    }
                     // Check Re-Confirm
                     if (rdbReConfirm.Checked == true)
                     {
@@ -465,6 +460,12 @@ namespace SolidHeight.View
                             return;
                         }
                     }
+                    // Validation
+                    if (!ValidationControls())
+                    {
+                        return;
+                    }
+                   
                     btnStart.Text = "Reset".ToUpper();
                     int strTotalPCCA = Convert.ToInt32(txtTotalPCCA.Text);
                     SerialList = new List<clsSerial>();
@@ -1262,9 +1263,6 @@ namespace SolidHeight.View
                                 UpdateMSG("ROW CAVITY Model : " + SubModel + " ไม่ได้ถูกตั้งค่า กรุณาติดต่อ Engineer", 1);
                                 return;
                             }
-
-
-
                             if (dataRow["MAX_CAV_SEQ"].ToString() == "")
                             {
                                 UpdateMSG("CAVITY Model : " + SubModel + "ไม่ได้ถูกตั้งค่า Model pad cavity กรุณาติดต่อ Engineer เนื่องจาก Model pad cavity ไม่ถูกต้อง", 1);
@@ -2063,8 +2061,6 @@ namespace SolidHeight.View
 
                             ProcTimeVHX.Stop();
                             bgWorker.CancelAsync();
-
-
                             strStatus = "SUCCESS";
 
                             mivStatus = new MethodInvoker(this.UpdateUI);
@@ -2310,6 +2306,7 @@ namespace SolidHeight.View
                 this.lblMsg_E.ForeColor = setMSG.Colors;
                 this.lblMsg.Text = setMSG.strStatus.ToString();
                 this.lblMsg.Visible = true;
+                
                 this.WindowState = FormWindowState.Normal; 
             }
             else if (strStatus.IndexOf("WAITING") >= 0)
@@ -2417,10 +2414,8 @@ namespace SolidHeight.View
 
             if (strSaveDataState == "Complete")
             {
-                 Thread.Sleep(500);
+                 Thread.Sleep(1500); 
                 ClearControl("");
-                 
-
             }
 
             this.gvHeight.Update();
