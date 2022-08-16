@@ -229,7 +229,7 @@ namespace SolidHeight.View
                     {
                         if (getSerialDetail(this.txtSerialNo.Text))
                         {
-                            txtStencil.Focus();
+                          //  txtStencil.Focus();
                         }
                         else
                         {
@@ -437,8 +437,6 @@ namespace SolidHeight.View
                 {
                     BindingModelConfig(SubModel);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -489,6 +487,10 @@ namespace SolidHeight.View
                         if (frmSN.DialogResult == DialogResult.OK)
                         {
                             SerialList = frmSN.resultSerialList;
+                        }
+                        else if(frmSN.DialogResult == DialogResult.Cancel)
+                        {
+                            ClearControl("");
                         }
                         UpdateMSG("", 0);
                     }

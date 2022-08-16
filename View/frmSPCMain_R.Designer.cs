@@ -32,6 +32,7 @@ namespace SolidHeight.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSPCMain_R));
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tblMachine = new System.Windows.Forms.TableLayoutPanel();
@@ -276,7 +277,7 @@ namespace SolidHeight.View
             this.txtHostName.Location = new System.Drawing.Point(162, 18);
             this.txtHostName.Name = "txtHostName";
             this.txtHostName.ReadOnly = true;
-            this.txtHostName.Size = new System.Drawing.Size(263, 25);
+            this.txtHostName.Size = new System.Drawing.Size(263, 29);
             this.txtHostName.TabIndex = 2;
             this.txtHostName.Text = "SIRILAKR";
             // 
@@ -304,7 +305,7 @@ namespace SolidHeight.View
             this.rdbMacroScope.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbMacroScope.Location = new System.Drawing.Point(3, 3);
             this.rdbMacroScope.Name = "rdbMacroScope";
-            this.rdbMacroScope.Size = new System.Drawing.Size(99, 19);
+            this.rdbMacroScope.Size = new System.Drawing.Size(120, 19);
             this.rdbMacroScope.TabIndex = 0;
             this.rdbMacroScope.TabStop = true;
             this.rdbMacroScope.Text = "MICROSCOPE";
@@ -318,7 +319,7 @@ namespace SolidHeight.View
             this.rdbVHX.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbVHX.Location = new System.Drawing.Point(134, 3);
             this.rdbVHX.Name = "rdbVHX";
-            this.rdbVHX.Size = new System.Drawing.Size(48, 19);
+            this.rdbVHX.Size = new System.Drawing.Size(59, 19);
             this.rdbVHX.TabIndex = 1;
             this.rdbVHX.TabStop = true;
             this.rdbVHX.Text = "VHX";
@@ -498,7 +499,7 @@ namespace SolidHeight.View
             this.txtDie.Location = new System.Drawing.Point(108, 3);
             this.txtDie.Name = "txtDie";
             this.txtDie.ReadOnly = true;
-            this.txtDie.Size = new System.Drawing.Size(99, 25);
+            this.txtDie.Size = new System.Drawing.Size(99, 29);
             this.txtDie.TabIndex = 1;
             // 
             // label26
@@ -525,7 +526,7 @@ namespace SolidHeight.View
             this.txtTotalPCCA.Location = new System.Drawing.Point(318, 3);
             this.txtTotalPCCA.Name = "txtTotalPCCA";
             this.txtTotalPCCA.ReadOnly = true;
-            this.txtTotalPCCA.Size = new System.Drawing.Size(101, 25);
+            this.txtTotalPCCA.Size = new System.Drawing.Size(101, 29);
             this.txtTotalPCCA.TabIndex = 5;
             // 
             // tableLayoutPanel13
@@ -588,7 +589,7 @@ namespace SolidHeight.View
             this.txtPadPerCol.Location = new System.Drawing.Point(108, 3);
             this.txtPadPerCol.Name = "txtPadPerCol";
             this.txtPadPerCol.ReadOnly = true;
-            this.txtPadPerCol.Size = new System.Drawing.Size(99, 25);
+            this.txtPadPerCol.Size = new System.Drawing.Size(99, 29);
             this.txtPadPerCol.TabIndex = 2;
             // 
             // txtMeasurement
@@ -601,7 +602,7 @@ namespace SolidHeight.View
             this.txtMeasurement.Location = new System.Drawing.Point(318, 3);
             this.txtMeasurement.Name = "txtMeasurement";
             this.txtMeasurement.ReadOnly = true;
-            this.txtMeasurement.Size = new System.Drawing.Size(101, 25);
+            this.txtMeasurement.Size = new System.Drawing.Size(101, 29);
             this.txtMeasurement.TabIndex = 3;
             // 
             // tableLayoutPanel12
@@ -646,7 +647,7 @@ namespace SolidHeight.View
             this.txtStencil.Location = new System.Drawing.Point(108, 3);
             this.txtStencil.MaxLength = 30;
             this.txtStencil.Name = "txtStencil";
-            this.txtStencil.Size = new System.Drawing.Size(311, 25);
+            this.txtStencil.Size = new System.Drawing.Size(311, 29);
             this.txtStencil.TabIndex = 1;
             this.txtStencil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStencil_KeyPress);
             // 
@@ -710,7 +711,7 @@ namespace SolidHeight.View
             this.txtLine.Location = new System.Drawing.Point(108, 3);
             this.txtLine.Name = "txtLine";
             this.txtLine.ReadOnly = true;
-            this.txtLine.Size = new System.Drawing.Size(99, 25);
+            this.txtLine.Size = new System.Drawing.Size(99, 29);
             this.txtLine.TabIndex = 2;
             // 
             // cmbSubModel
@@ -720,7 +721,7 @@ namespace SolidHeight.View
             this.cmbSubModel.FormattingEnabled = true;
             this.cmbSubModel.Location = new System.Drawing.Point(318, 3);
             this.cmbSubModel.Name = "cmbSubModel";
-            this.cmbSubModel.Size = new System.Drawing.Size(101, 25);
+            this.cmbSubModel.Size = new System.Drawing.Size(101, 29);
             this.cmbSubModel.TabIndex = 3;
             this.cmbSubModel.SelectedValueChanged += new System.EventHandler(this.cmbSubModel_SelectedValueChanged);
             // 
@@ -784,7 +785,7 @@ namespace SolidHeight.View
             this.txtLotNo.Location = new System.Drawing.Point(108, 3);
             this.txtLotNo.Name = "txtLotNo";
             this.txtLotNo.ReadOnly = true;
-            this.txtLotNo.Size = new System.Drawing.Size(99, 25);
+            this.txtLotNo.Size = new System.Drawing.Size(99, 29);
             this.txtLotNo.TabIndex = 2;
             // 
             // txtModel
@@ -797,7 +798,7 @@ namespace SolidHeight.View
             this.txtModel.Location = new System.Drawing.Point(318, 3);
             this.txtModel.Name = "txtModel";
             this.txtModel.ReadOnly = true;
-            this.txtModel.Size = new System.Drawing.Size(101, 25);
+            this.txtModel.Size = new System.Drawing.Size(101, 29);
             this.txtModel.TabIndex = 3;
             // 
             // tableLayoutPanel9
@@ -843,7 +844,7 @@ namespace SolidHeight.View
             this.txtSerialNo.Location = new System.Drawing.Point(108, 3);
             this.txtSerialNo.MaxLength = 25;
             this.txtSerialNo.Name = "txtSerialNo";
-            this.txtSerialNo.Size = new System.Drawing.Size(311, 25);
+            this.txtSerialNo.Size = new System.Drawing.Size(311, 29);
             this.txtSerialNo.TabIndex = 1;
             this.txtSerialNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerialNo_KeyPress);
             // 
@@ -920,7 +921,7 @@ namespace SolidHeight.View
             this.txtEN.Location = new System.Drawing.Point(108, 3);
             this.txtEN.MaxLength = 10;
             this.txtEN.Name = "txtEN";
-            this.txtEN.Size = new System.Drawing.Size(99, 25);
+            this.txtEN.Size = new System.Drawing.Size(99, 29);
             this.txtEN.TabIndex = 1;
             this.txtEN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEN_KeyPress);
             // 
@@ -934,7 +935,7 @@ namespace SolidHeight.View
             this.cmbShift.FormattingEnabled = true;
             this.cmbShift.Location = new System.Drawing.Point(318, 3);
             this.cmbShift.Name = "cmbShift";
-            this.cmbShift.Size = new System.Drawing.Size(101, 25);
+            this.cmbShift.Size = new System.Drawing.Size(101, 29);
             this.cmbShift.TabIndex = 3;
             this.cmbShift.SelectedIndexChanged += new System.EventHandler(this.cmbShift_SelectedIndexChanged);
             // 
@@ -1101,7 +1102,7 @@ namespace SolidHeight.View
             this.cmbCauses.FormattingEnabled = true;
             this.cmbCauses.Location = new System.Drawing.Point(90, 4);
             this.cmbCauses.Name = "cmbCauses";
-            this.cmbCauses.Size = new System.Drawing.Size(122, 25);
+            this.cmbCauses.Size = new System.Drawing.Size(122, 29);
             this.cmbCauses.TabIndex = 0;
             // 
             // cmbActions
@@ -1114,7 +1115,7 @@ namespace SolidHeight.View
             this.cmbActions.FormattingEnabled = true;
             this.cmbActions.Location = new System.Drawing.Point(90, 34);
             this.cmbActions.Name = "cmbActions";
-            this.cmbActions.Size = new System.Drawing.Size(122, 25);
+            this.cmbActions.Size = new System.Drawing.Size(122, 29);
             this.cmbActions.TabIndex = 1;
             // 
             // label17
@@ -1167,7 +1168,7 @@ namespace SolidHeight.View
             this.txtRemark.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemark.Location = new System.Drawing.Point(90, 64);
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(122, 25);
+            this.txtRemark.Size = new System.Drawing.Size(122, 29);
             this.txtRemark.TabIndex = 6;
             // 
             // tblControlLimit
@@ -1244,7 +1245,7 @@ namespace SolidHeight.View
             this.txtLower.Location = new System.Drawing.Point(113, 3);
             this.txtLower.Name = "txtLower";
             this.txtLower.ReadOnly = true;
-            this.txtLower.Size = new System.Drawing.Size(104, 25);
+            this.txtLower.Size = new System.Drawing.Size(104, 29);
             this.txtLower.TabIndex = 0;
             // 
             // txtCenterLimit
@@ -1257,7 +1258,7 @@ namespace SolidHeight.View
             this.txtCenterLimit.Location = new System.Drawing.Point(333, 3);
             this.txtCenterLimit.Name = "txtCenterLimit";
             this.txtCenterLimit.ReadOnly = true;
-            this.txtCenterLimit.Size = new System.Drawing.Size(104, 25);
+            this.txtCenterLimit.Size = new System.Drawing.Size(104, 29);
             this.txtCenterLimit.TabIndex = 1;
             // 
             // txtCPKLower
@@ -1270,7 +1271,7 @@ namespace SolidHeight.View
             this.txtCPKLower.Location = new System.Drawing.Point(113, 32);
             this.txtCPKLower.Name = "txtCPKLower";
             this.txtCPKLower.ReadOnly = true;
-            this.txtCPKLower.Size = new System.Drawing.Size(104, 25);
+            this.txtCPKLower.Size = new System.Drawing.Size(104, 29);
             this.txtCPKLower.TabIndex = 2;
             // 
             // txtCPKUpper
@@ -1283,7 +1284,7 @@ namespace SolidHeight.View
             this.txtCPKUpper.Location = new System.Drawing.Point(333, 32);
             this.txtCPKUpper.Name = "txtCPKUpper";
             this.txtCPKUpper.ReadOnly = true;
-            this.txtCPKUpper.Size = new System.Drawing.Size(104, 25);
+            this.txtCPKUpper.Size = new System.Drawing.Size(104, 29);
             this.txtCPKUpper.TabIndex = 3;
             // 
             // txtSDUpper
@@ -1296,7 +1297,7 @@ namespace SolidHeight.View
             this.txtSDUpper.Location = new System.Drawing.Point(553, 32);
             this.txtSDUpper.Name = "txtSDUpper";
             this.txtSDUpper.ReadOnly = true;
-            this.txtSDUpper.Size = new System.Drawing.Size(107, 25);
+            this.txtSDUpper.Size = new System.Drawing.Size(107, 29);
             this.txtSDUpper.TabIndex = 4;
             // 
             // txtUpper
@@ -1309,7 +1310,7 @@ namespace SolidHeight.View
             this.txtUpper.Location = new System.Drawing.Point(553, 3);
             this.txtUpper.Name = "txtUpper";
             this.txtUpper.ReadOnly = true;
-            this.txtUpper.Size = new System.Drawing.Size(107, 25);
+            this.txtUpper.Size = new System.Drawing.Size(107, 29);
             this.txtUpper.TabIndex = 4;
             // 
             // label21
@@ -1475,7 +1476,7 @@ namespace SolidHeight.View
             this.txtQty.Location = new System.Drawing.Point(72, 3);
             this.txtQty.Name = "txtQty";
             this.txtQty.ReadOnly = true;
-            this.txtQty.Size = new System.Drawing.Size(63, 29);
+            this.txtQty.Size = new System.Drawing.Size(63, 34);
             this.txtQty.TabIndex = 1;
             this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1783,7 +1784,7 @@ namespace SolidHeight.View
             this.txtHeight.Location = new System.Drawing.Point(3, 28);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.ReadOnly = true;
-            this.txtHeight.Size = new System.Drawing.Size(192, 38);
+            this.txtHeight.Size = new System.Drawing.Size(192, 45);
             this.txtHeight.TabIndex = 1;
             this.txtHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1879,7 +1880,7 @@ namespace SolidHeight.View
             this.txtSeq.Location = new System.Drawing.Point(82, 3);
             this.txtSeq.Name = "txtSeq";
             this.txtSeq.ReadOnly = true;
-            this.txtSeq.Size = new System.Drawing.Size(113, 25);
+            this.txtSeq.Size = new System.Drawing.Size(113, 29);
             this.txtSeq.TabIndex = 0;
             // 
             // txtCav
@@ -1892,7 +1893,7 @@ namespace SolidHeight.View
             this.txtCav.Location = new System.Drawing.Point(82, 35);
             this.txtCav.Name = "txtCav";
             this.txtCav.ReadOnly = true;
-            this.txtCav.Size = new System.Drawing.Size(113, 25);
+            this.txtCav.Size = new System.Drawing.Size(113, 29);
             this.txtCav.TabIndex = 1;
             // 
             // txtRow
@@ -1905,7 +1906,7 @@ namespace SolidHeight.View
             this.txtRow.Location = new System.Drawing.Point(82, 67);
             this.txtRow.Name = "txtRow";
             this.txtRow.ReadOnly = true;
-            this.txtRow.Size = new System.Drawing.Size(113, 25);
+            this.txtRow.Size = new System.Drawing.Size(113, 29);
             this.txtRow.TabIndex = 2;
             // 
             // txtPad
@@ -1918,7 +1919,7 @@ namespace SolidHeight.View
             this.txtPad.Location = new System.Drawing.Point(82, 99);
             this.txtPad.Name = "txtPad";
             this.txtPad.ReadOnly = true;
-            this.txtPad.Size = new System.Drawing.Size(113, 25);
+            this.txtPad.Size = new System.Drawing.Size(113, 29);
             this.txtPad.TabIndex = 3;
             // 
             // label30
@@ -2036,10 +2037,12 @@ namespace SolidHeight.View
             // 
             // frmSPCMain_R
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(695, 850);
+            this.ClientSize = new System.Drawing.Size(867, 1067);
             this.Controls.Add(this.tblAll);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSPCMain_R";

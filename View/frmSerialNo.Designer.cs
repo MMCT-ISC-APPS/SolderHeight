@@ -30,6 +30,7 @@ namespace SolidHeight.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSerialNo));
             this.tblfrmSerialList = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblLotNo = new System.Windows.Forms.Label();
@@ -37,18 +38,18 @@ namespace SolidHeight.View
             this.txtJobName = new System.Windows.Forms.TextBox();
             this.txtTotalPCCA = new System.Windows.Forms.TextBox();
             this.dgvSerialList = new System.Windows.Forms.DataGridView();
+            this.seqNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.strSerialNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.strSerialValues = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clsSerialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblButton = new System.Windows.Forms.TableLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.lblMSG = new System.Windows.Forms.Label();
-            this.seqNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.strSerialNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clsSerialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblfrmSerialList.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSerialList)).BeginInit();
-            this.tblButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clsSerialBindingSource)).BeginInit();
+            this.tblButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +130,7 @@ namespace SolidHeight.View
             this.txtJobName.Location = new System.Drawing.Point(123, 3);
             this.txtJobName.Name = "txtJobName";
             this.txtJobName.ReadOnly = true;
-            this.txtJobName.Size = new System.Drawing.Size(154, 26);
+            this.txtJobName.Size = new System.Drawing.Size(154, 30);
             this.txtJobName.TabIndex = 2;
             // 
             // txtTotalPCCA
@@ -142,7 +143,7 @@ namespace SolidHeight.View
             this.txtTotalPCCA.Location = new System.Drawing.Point(123, 35);
             this.txtTotalPCCA.Name = "txtTotalPCCA";
             this.txtTotalPCCA.ReadOnly = true;
-            this.txtTotalPCCA.Size = new System.Drawing.Size(154, 26);
+            this.txtTotalPCCA.Size = new System.Drawing.Size(154, 30);
             this.txtTotalPCCA.TabIndex = 3;
             // 
             // dgvSerialList
@@ -170,6 +171,23 @@ namespace SolidHeight.View
             this.dgvSerialList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSerialList_CellEnter);
             this.dgvSerialList.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSerialList_CellLeave);
             // 
+            // seqNoDataGridViewTextBoxColumn
+            // 
+            this.seqNoDataGridViewTextBoxColumn.DataPropertyName = "SeqNo";
+            this.seqNoDataGridViewTextBoxColumn.HeaderText = "SeqNo";
+            this.seqNoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.seqNoDataGridViewTextBoxColumn.Name = "seqNoDataGridViewTextBoxColumn";
+            this.seqNoDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // strSerialNoDataGridViewTextBoxColumn
+            // 
+            this.strSerialNoDataGridViewTextBoxColumn.DataPropertyName = "strSerialNo";
+            this.strSerialNoDataGridViewTextBoxColumn.HeaderText = "SerialNo";
+            this.strSerialNoDataGridViewTextBoxColumn.MaxInputLength = 10;
+            this.strSerialNoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.strSerialNoDataGridViewTextBoxColumn.Name = "strSerialNoDataGridViewTextBoxColumn";
+            this.strSerialNoDataGridViewTextBoxColumn.Width = 50;
+            // 
             // strSerialValues
             // 
             this.strSerialValues.DataPropertyName = "strSerialValues";
@@ -178,6 +196,10 @@ namespace SolidHeight.View
             this.strSerialValues.MinimumWidth = 6;
             this.strSerialValues.Name = "strSerialValues";
             this.strSerialValues.Width = 125;
+            // 
+            // clsSerialBindingSource
+            // 
+            this.clsSerialBindingSource.DataSource = typeof(SolidHeight.Models.clsSerial);
             // 
             // tblButton
             // 
@@ -225,35 +247,16 @@ namespace SolidHeight.View
             this.lblMSG.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMSG.Visible = false;
             // 
-            // seqNoDataGridViewTextBoxColumn
-            // 
-            this.seqNoDataGridViewTextBoxColumn.DataPropertyName = "SeqNo";
-            this.seqNoDataGridViewTextBoxColumn.HeaderText = "SeqNo";
-            this.seqNoDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.seqNoDataGridViewTextBoxColumn.Name = "seqNoDataGridViewTextBoxColumn";
-            this.seqNoDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // strSerialNoDataGridViewTextBoxColumn
-            // 
-            this.strSerialNoDataGridViewTextBoxColumn.DataPropertyName = "strSerialNo";
-            this.strSerialNoDataGridViewTextBoxColumn.HeaderText = "SerialNo";
-            this.strSerialNoDataGridViewTextBoxColumn.MaxInputLength = 10;
-            this.strSerialNoDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.strSerialNoDataGridViewTextBoxColumn.Name = "strSerialNoDataGridViewTextBoxColumn";
-            this.strSerialNoDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // clsSerialBindingSource
-            // 
-            this.clsSerialBindingSource.DataSource = typeof(SolidHeight.Models.clsSerial);
-            // 
             // frmSerialNo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(437, 824);
+            this.ClientSize = new System.Drawing.Size(571, 1018);
             this.Controls.Add(this.tblfrmSerialList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmSerialNo";
             // 
             // 
@@ -268,8 +271,8 @@ namespace SolidHeight.View
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSerialList)).EndInit();
-            this.tblButton.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clsSerialBindingSource)).EndInit();
+            this.tblButton.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

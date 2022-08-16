@@ -22,11 +22,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\starcatsvr\Software_Production\SEAGATE\Solder measuring for Seagate\</InstallUrl>
+    <InstallUrl>\\starcatsvr\Software_Production\SEAGATE\Solder measuring for Seagate\published\</InstallUrl>
+    <UpdateUrl>\\starcatsvr\Software_Production\SEAGATE\Solder measuring for Seagate\published\</UpdateUrl>
     <ProductName>Solder Measuring of Seagate</ProductName>
     <PublisherName>ISC MMCT</PublisherName>
     <SuiteName>Solder Measuring</SuiteName>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -75,6 +76,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>microscope.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.CompositeUI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -199,6 +203,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="microscope.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
