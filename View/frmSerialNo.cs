@@ -321,7 +321,7 @@ namespace SolidHeight.View
                    e.Cancel =true;
                 }else if (DialogResult == DialogResult.Cancel)
                 {
-                    DialogResult dr =MessageBox.Show(new Form { TopMost = true }, "คุณมั่นใจหรือไม่", "Serial Cancle", MessageBoxButtons.OKCancel);
+                    DialogResult dr =MessageBox.Show(new Form { TopMost = true }, "คุณแน่ใจว่าต้องการ\"ยกเลิก\"หรือไม่", "Serial Cancle", MessageBoxButtons.OKCancel,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
                     if(dr == DialogResult.Cancel)
                     {
                         e.Cancel = true;

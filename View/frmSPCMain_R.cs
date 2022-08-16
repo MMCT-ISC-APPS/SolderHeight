@@ -491,6 +491,7 @@ namespace SolidHeight.View
                         else if(frmSN.DialogResult == DialogResult.Cancel)
                         {
                             ClearControl("");
+                            return;
                         }
                         UpdateMSG("", 0);
                     }
@@ -1819,13 +1820,13 @@ namespace SolidHeight.View
                 {
 
                     UpdateMSG("การวัดความสูงของSolder ประสบความสำเร็จ ", 3);
-                    setDelay(true);
+                    //setDelay(true);
                     blResult = true;
                 }
                 else
                 {
                     UpdateMSG("การวัดความสูงของSolder ล้มเหลว", 2);
-                    setDelay(true);
+                    //setDelay(true);
 
                     blResult = false;
                 }
@@ -2260,11 +2261,7 @@ namespace SolidHeight.View
                     break;
             }
 
-            Thread.Sleep(100);
-            //this.lblMsg_E.Text = strStatus;
-            //this.lblMsg_E.ForeColor = colors;
-            //this.lblMsg.Text = strMSG.ToString();
-            //this.lblMsg.Visible = true;
+            Thread.Sleep(100); 
             setMSG = new clsMSG();
             setMSG.icons = icon;
             setMSG.Colors = colors;
@@ -2272,18 +2269,21 @@ namespace SolidHeight.View
             if (blStatus != 0)
             {
 
-                MessageBox.Show(new Form { TopMost = true }, strMSG.ToString(), strStatus.ToUpper(), MessageBoxButtons.OK, icon);
-                if (blStatus == 2)
+                if (strMCType=="vhx"&&blStatus==3)
                 {
-                    //tblDetail.Enabled = false;
-                    //tblMachineType.Enabled = false;
-                    //tblMeasureType.Enabled = false;
-                    strStatus = "ERROR";
-                    mivStatus = new MethodInvoker(this.UpdateUI);
-                    this.BeginInvoke(mivStatus);
 
                 }
-                //tblAll.Enabled = false;
+                else
+                {
+                    MessageBox.Show(new Form { TopMost = true }, strMSG.ToString(), strStatus.ToUpper(), MessageBoxButtons.OK, icon);
+                }
+
+                if (blStatus == 2)
+                { 
+                    strStatus = "ERROR";
+                    mivStatus = new MethodInvoker(this.UpdateUI);
+                    this.BeginInvoke(mivStatus); 
+                } 
             }
             Cursor.Current = Cursors.Default;
         }
@@ -2417,7 +2417,7 @@ namespace SolidHeight.View
 
             if (strSaveDataState == "Complete")
             {
-                 Thread.Sleep(600);
+                 Thread.Sleep(500);
                 ClearControl("");
                  
 
