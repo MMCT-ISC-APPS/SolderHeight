@@ -15,8 +15,8 @@ namespace SolidHeight.View
     public partial class frmSerialNo : Telerik.WinControls.UI.RadForm
     {
         DataGridView dgv;
-        String strJobName, strTotalPCCA, strFstSerialNo;
-       
+        String strJobName, strTotalPCCA  , strFstSerialNo;
+        int iTatolPCCA = 0;
         DataTable dt;
         clsSPC objRun = new clsSPC();
         List<clsSerial> SerialList = new List<clsSerial>();
@@ -69,8 +69,14 @@ namespace SolidHeight.View
         {
             try
             {
-                int TatolPCCA = Convert.ToInt32(strTotalPCCA);
-                for (int i = 1; i <= TatolPCCA; i++)
+                iTatolPCCA = Convert.ToInt32(strTotalPCCA);
+
+
+                iTatolPCCA = iTatolPCCA > 10 ? 10 : iTatolPCCA;
+
+
+
+                for (int i = 1; i <= iTatolPCCA; i++)
                 {
                     SerialList.Add(new clsSerial
                     {
@@ -238,7 +244,7 @@ namespace SolidHeight.View
 
 
 
-                if (e.RowIndex == Convert.ToInt32(strTotalPCCA) - 1)
+                if (e.RowIndex == Convert.ToInt32(iTatolPCCA) - 1)
                 {
                     btnOK.Enabled = true;
                 }
@@ -321,7 +327,8 @@ namespace SolidHeight.View
                    e.Cancel =true;
                 }else if (DialogResult == DialogResult.Cancel)
                 {
-                    DialogResult dr =MessageBox.Show(new Form { TopMost = true }, "คุณแน่ใจว่าต้องการ\"ยกเลิก\"หรือไม่", "Serial Cancle", MessageBoxButtons.OKCancel,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
+                    //DialogResult dr = new DialogResult();
+                   var dr =  MessageBox.Show(new Form { TopMost = true }, "คุณแน่ใจว่าต้องการ\"ยกเลิก\"หรือไม่", "Serial Cancle", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
                     if(dr == DialogResult.Cancel)
                     {
                         e.Cancel = true;
@@ -332,10 +339,10 @@ namespace SolidHeight.View
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 

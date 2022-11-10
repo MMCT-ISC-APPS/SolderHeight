@@ -911,7 +911,6 @@ namespace SolidHeight.View
                 else
                 {
                     UpdateMSG("JobName : " + txtLotNo.Text + " subModel :" + cmbSubModel.Text + " เป็น Job Prime.", 1);
-
                 }
                 return false;
             }
@@ -924,11 +923,6 @@ namespace SolidHeight.View
             List<Control> ListControls = new List<Control>();
             try
             {
-
-
-
-
-
                 // Control LIMIT \\
                 ListControls = new List<Control>();
 
@@ -1113,9 +1107,9 @@ namespace SolidHeight.View
 
                 if (strTbl == "")
                 {
-                    strStatus = "Waiting";
-                    mivStatus = new MethodInvoker(this.UpdateUI);
-                    this.BeginInvoke(mivStatus);
+                    //strStatus = "Waiting";
+                    //mivStatus = new MethodInvoker(this.UpdateUI);
+                    //this.BeginInvoke(mivStatus);
                     if (strMCType == "vhx")
                     {
                         if (bgWorker.IsBusy)
@@ -1169,9 +1163,7 @@ namespace SolidHeight.View
 
                     
                   
-                        strStatus = "READY";
-
-                   
+                    strStatus = "READY";                   
                     mivStatus = new MethodInvoker(this.UpdateUI);
                     this.BeginInvoke(mivStatus);
                     ObjCal = new clsCalculate();
@@ -1357,10 +1349,6 @@ namespace SolidHeight.View
                 throw;
             }
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ZtoDB();
-        }
         private bool BindingSubModels(string strMPNPrefix)
         {
             try
@@ -1452,30 +1440,13 @@ namespace SolidHeight.View
                     string dataReceived = this.serialPort1.ReadExisting();
                     if (dataReceived != "")
                     {
-                        //int indexZ = dataReceived.IndexOf('Z');
-                        //if (indexZ!=-1)
-                        //{
-                        //    int Zinit = indexZ + 1;
-                        //    int Zfsh = 15;
-
-                        //    if (dataReceived.Length > indexZ )
-                        //    {
-                        //        string dataReceived1 = dataReceived.Substring(Zinit, Zfsh);
-                        //        gentxtInput("Z");
-                        //        gentxtInput(dataReceived1);
-                        //    }
-                        //    else
-                        //    {
-                        //        MessageBox.Show(serialPort1.PortName + " : " + dataReceived, "TEST result", MessageBoxButtons.OK);
-                        //    }
-                        //}
-                        dataReceived=dataReceived.Replace("\\r\\n", "");
+                        dataReceived = dataReceived.Replace("\\r\\n", "");
                         char[] arrDataReceived = dataReceived.ToCharArray();
                         foreach (var i in arrDataReceived)
                         {
                             gentxtInput(i.ToString());
                         }
-                        
+
                     }
                 }
             }
@@ -1508,10 +1479,7 @@ namespace SolidHeight.View
         private void gentxtInput(String strInput)
         {
             try
-            {
-                //strStatus = "Waitting";
-                //mivStatus = new MethodInvoker(this.UpdateUI);
-                //this.BeginInvoke(mivStatus);
+            { 
                 txtInput.BeginInvoke((MethodInvoker)(() =>
                 {
                     txtInput.Text = txtInput.Text + strInput;
@@ -1588,7 +1556,6 @@ namespace SolidHeight.View
             {
                 delayTime = Led_num;
 
-
                 for (int i = 0; i < Led_num; i++)
                 { 
                     if (strMCType == "microscope")
@@ -1613,20 +1580,10 @@ namespace SolidHeight.View
                     {
                         
                     }
-                }
-
-
-              
-                    //strStatus = "READY";
-                    //mivStatus = new MethodInvoker(this.UpdateUI);
-                    //this.BeginInvoke(mivStatus);
-                
+                } 
 
                 ProcTimer.Enabled = false;
                 Cursor.Current = Cursors.Default;
-
-
-
             }
 
         }
@@ -1638,8 +1595,6 @@ namespace SolidHeight.View
                 {
                     setDelay(true);
                 }
-
-
 
                 DataRow dr = dtModels.Rows[0];
                 Double dclower_limit = Convert.ToDouble(dr["LOWERLIMIT"].ToString())
@@ -1717,38 +1672,6 @@ namespace SolidHeight.View
                 throw;
             }
 
-
-        }
-        private void ZtoGridview(int Seqno)
-        {
-            try
-            {
-
-                gvHeight.DataSource = null;
-                gvHeight.DataSource = HeightList.OrderByDescending(o => o.SeqNo).ToList();
-                gvHeight.Columns[2].Visible = false;
-                gvHeight.Columns["SeqNo"].Width = 60;
-                this.gvHeight.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
-
-
-                clsHieght SPCs = new clsHieght();
-                SPCs = HeightList.Where(w => w.SeqNo == Seqno).FirstOrDefault();
-                List<clsCal> SPC = new List<clsCal>();
-
-                SPC = SPCs.Results.ToList();
-                gvSPC.DataSource = null;
-
-                gvSPC.DataSource = SPC;
-                gvHeight.DataSource = HeightList.OrderByDescending(o => o.SeqNo).ToList();
-                gvSPC.BindingContext = BindingContext;
-                DataGridViewColumn columnPSC = gvSPC.Columns[0];
-                columnPSC.Width = 40;
-
-            }
-            catch (Exception ex)
-            {
-                UpdateMSG(ex.Message.ToString(), 2);
-            }
 
         }
         private Boolean ZtoDB()
@@ -1879,8 +1802,7 @@ namespace SolidHeight.View
                     }
                     else
                     {
-                        //string strlogFinishPath = "";
-                        //string strLogErrorPath = "";
+
                         String strlogFinishPath = CreateFolderLog(strSPCMovePath + "\\Finish")
                             , strLogErrorPath = CreateFolderLog(strSPCMovePath + "\\Error");
 
@@ -2082,7 +2004,6 @@ namespace SolidHeight.View
             }
             catch (Exception ex)
             {
-
                 var st = new StackTrace(ex, true);
                 // Get the top stack frame
                 var frame = st.GetFrame(0);
@@ -2194,9 +2115,6 @@ namespace SolidHeight.View
                         if (strLine.Split(',')[0].IndexOf("Height") >= 0)
                         {
                             Result = Math.Round(Double.Parse(strLine.Split(',')[1].ToString()) / 1000, 7);
-
-
-
                             break;
                         }
                     }
@@ -2243,9 +2161,7 @@ namespace SolidHeight.View
                     break;
 
                 default:
-                        strStatus = "READY";
-                    
-                    
+                    strStatus = "READY";
                     colors = Color.Blue;
                     icon = MessageBoxIcon.Information;
                     break;
