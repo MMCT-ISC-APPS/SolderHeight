@@ -559,9 +559,6 @@ namespace SolidHeight.View
             }
         }
 
-
-
-
         #endregion
 
         #region functions
